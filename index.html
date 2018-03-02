@@ -353,16 +353,16 @@
 
       
         
-          
-            <h3 id="hexo插入图片文件的方式"><a href="#hexo插入图片文件的方式" class="headerlink" title="hexo插入图片文件的方式"></a>hexo插入图片文件的方式</h3><p>@(Hexo+Github)</p>
-<p><a href="https://yanyinhong.github.io/2017/05/02/How-to-insert-image-in-hexo-post/" target="_blank" rel="external">参考文章</a>：</p>
+          <h3 id="hexo插入图片文件的方式"><a href="#hexo插入图片文件的方式" class="headerlink" title="hexo插入图片文件的方式"></a>hexo插入图片文件的方式</h3><p>@(Hexo+Github)</p>
+<p><a href="https://yanyinhong.github.io/2017/05/02/How-to-insert-image-in-hexo-post/">参考文章</a>：</p>
 <p>在source中新建images文件夹，相对位置放置图片的方法在主页可以显示图片，但是一旦进入文章，图片就无法显示了。</p>
-<p>原因是，我站在当前文章的位置考虑，以为写法是这样的：</p>
-<p><code>source/images/more.png</code></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![阅读全文](../images/more.png)</div></pre></td></tr></table></figure>
-<p>实际上应该这么写：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![阅读全文](<span class="regexp">/images/more</span>.png)</div></pre></td></tr></table></figure>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/02/insert-images/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -431,7 +431,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/02/more/" itemprop="url">more</a></h1>
+                <a class="post-title-link" href="/2018/03/02/more/" itemprop="url">关于阅读全文</a></h1>
         
 
         <div class="post-meta">
@@ -499,14 +499,14 @@
 
       
         
-          
-            <h2 id="关于more"><a href="#关于more" class="headerlink" title="关于more"></a>关于more</h2><p>如果不加配置的话，博客首页会把全文堆积在一起，这样不便于查看更多信息，我们可以把文章截断，要看更多内容，点击按钮进入展开。</p>
-<p>实际代码就一行，在想要截断的区域加一句：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!--more--&gt;</div></pre></td></tr></table></figure>
-<p>这样就可以得到如下的效果：</p>
-<p><img src="/images/more.png" alt="阅读全文"></p>
-
-          
+          <h2 id="关于more"><a href="#关于more" class="headerlink" title="关于more"></a>关于more</h2><p>如果不加配置的话，博客首页会把全文堆积在一起，这样不便于查看更多信息，我们可以把文章截断，要看更多内容，点击按钮进入展开。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/02/more/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
