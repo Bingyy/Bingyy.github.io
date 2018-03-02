@@ -103,16 +103,16 @@
   <meta name="keywords" content="Hexo, NexT" />
 
 
-<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&amp;apos;&amp;apos;&amp;apos;读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。输出格式：在一行内输出n的各位数">
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&apos;&apos;&apos;读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。输出格式：在一行内输出n的各位数字之和的每一位，拼音数字间有1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PAT乙级1002题解">
 <meta property="og:url" content="http://yoursite.com/2018/02/28/b1002/index.html">
 <meta property="og:site_name" content="Bing's Blog">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&amp;apos;&amp;apos;&amp;apos;读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。输出格式：在一行内输出n的各位数">
-<meta property="og:updated_time" content="2018-03-02T04:47:26.530Z">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&apos;&apos;&apos;读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。输出格式：在一行内输出n的各位数字之和的每一位，拼音数字间有1">
+<meta property="og:updated_time" content="2018-03-02T05:28:34.685Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PAT乙级1002题解">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&amp;apos;&amp;apos;&amp;apos;读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。输出格式：在一行内输出n的各位数">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&apos;&apos;&apos;读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。输出格式：在一行内输出n的各位数字之和的每一位，拼音数字间有1">
 
 
 
@@ -371,7 +371,7 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">&apos;&apos;&apos;读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。</div><div class="line"></div><div class="line">输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。</div><div class="line"></div><div class="line">输出格式：在一行内输出n的各位数字之和的每一位，拼音数字间有1 空格，但一行中最后一个拼音数字后没有空格。</div><div class="line"></div><div class="line">输入样例：</div><div class="line">1234567890987654321123456789</div><div class="line">输出样例：</div><div class="line">yi san wu</div><div class="line"></div><div class="line">&apos;&apos;&apos;</div><div class="line"></div><div class="line"># 需要先建个字典</div><div class="line">dic = &#123;&#125;</div><div class="line"></div><div class="line">def construct_dictionary():</div><div class="line"></div><div class="line">    dic[&apos;0&apos;] = &apos;ling&apos;</div><div class="line">    dic[&apos;1&apos;] = &apos;yi&apos;</div><div class="line">    dic[&apos;2&apos;] = &apos;er&apos;</div><div class="line">    dic[&apos;3&apos;] = &apos;san&apos;</div><div class="line">    dic[&apos;4&apos;] = &apos;si&apos;</div><div class="line">    dic[&apos;5&apos;] = &apos;wu&apos;</div><div class="line">    dic[&apos;6&apos;] = &apos;liu&apos;</div><div class="line">    dic[&apos;7&apos;] = &apos;qi&apos;</div><div class="line">    dic[&apos;8&apos;] = &apos;ba&apos;</div><div class="line">    dic[&apos;9&apos;] = &apos;jiu&apos;</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line"></div><div class="line">    construct_dictionary()</div><div class="line"></div><div class="line">    raw = input()</div><div class="line">    sum = 0</div><div class="line">    for i in range(len(raw)):</div><div class="line">        sum += eval(raw[i])</div><div class="line"></div><div class="line">    sum_str = str(sum)</div><div class="line">    # print(res)</div><div class="line">    # 控制输出</div><div class="line">    res = &apos;&apos;</div><div class="line">    for j in range(len(sum_str)):</div><div class="line">        if j != len(sum_str) - 1:</div><div class="line">            res += dic[sum_str[j]] + &apos; &apos;</div><div class="line">        else:</div><div class="line">            res += dic[sum_str[j]]</div><div class="line">    print(res)</div></pre></td></tr></table></figure>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。</span></div><div class="line"></div><div class="line">输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。</div><div class="line"></div><div class="line">输出格式：在一行内输出n的各位数字之和的每一位，拼音数字间有1 空格，但一行中最后一个拼音数字后没有空格。</div><div class="line"></div><div class="line">输入样例：</div><div class="line">1234567890987654321123456789</div><div class="line">输出样例：</div><div class="line">yi san wu</div><div class="line"></div><div class="line">'''</div><div class="line"></div><div class="line"><span class="comment"># 需要先建个字典</span></div><div class="line">dic = &#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">construct_dictionary</span><span class="params">()</span>:</span></div><div class="line"></div><div class="line">    dic[<span class="string">'0'</span>] = <span class="string">'ling'</span></div><div class="line">    dic[<span class="string">'1'</span>] = <span class="string">'yi'</span></div><div class="line">    dic[<span class="string">'2'</span>] = <span class="string">'er'</span></div><div class="line">    dic[<span class="string">'3'</span>] = <span class="string">'san'</span></div><div class="line">    dic[<span class="string">'4'</span>] = <span class="string">'si'</span></div><div class="line">    dic[<span class="string">'5'</span>] = <span class="string">'wu'</span></div><div class="line">    dic[<span class="string">'6'</span>] = <span class="string">'liu'</span></div><div class="line">    dic[<span class="string">'7'</span>] = <span class="string">'qi'</span></div><div class="line">    dic[<span class="string">'8'</span>] = <span class="string">'ba'</span></div><div class="line">    dic[<span class="string">'9'</span>] = <span class="string">'jiu'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line"></div><div class="line">    construct_dictionary()</div><div class="line"></div><div class="line">    raw = input()</div><div class="line">    sum = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(raw)):</div><div class="line">        sum += eval(raw[i])</div><div class="line"></div><div class="line">    sum_str = str(sum)</div><div class="line">    <span class="comment"># print(res)</span></div><div class="line">    <span class="comment"># 控制输出</span></div><div class="line">    res = <span class="string">''</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(sum_str)):</div><div class="line">        <span class="keyword">if</span> j != len(sum_str) - <span class="number">1</span>:</div><div class="line">            res += dic[sum_str[j]] + <span class="string">' '</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            res += dic[sum_str[j]]</div><div class="line">    print(res)</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -473,7 +473,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -490,7 +490,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

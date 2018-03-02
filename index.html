@@ -284,6 +284,343 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/02/highlight-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/02/highlight-code/" itemprop="url">next主题设定代码高亮格式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T13:18:12+08:00">2018-03-02</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo主题配置/" itemprop="url" rel="index"><span itemprop="name">Hexo主题配置</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="next主题设定代码高亮格式"><a href="#next主题设定代码高亮格式" class="headerlink" title="next主题设定代码高亮格式"></a>next主题设定代码高亮格式</h2><p>@(Hexo+Github)</p>
+<p>新版的Next主题卡得很严，记录如下。</p>
+<p>首先需要动的地方有：</p>
+<ul>
+<li>主题的<code>_config.yml</code>文件</li>
+<li>站点的<code>_config.yml</code>文件</li>
+<li>代码块的语言标注</li>
+</ul>
+<p>在站点的配置文件中，搜索<code>hightlight</code>:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">highlight:</span></div><div class="line">  <span class="symbol">enable:</span> <span class="literal">true</span></div><div class="line">  <span class="symbol">line_number:</span> <span class="literal">true</span></div><div class="line">  <span class="symbol">auto_detect:</span> <span class="literal">true</span></div><div class="line">  <span class="symbol">tab_replace:</span></div></pre></td></tr></table></figure>
+<p>文字自动检测默认不启动，所以改成<code>true</code>使其起作用。</p>
+<p>再到主题的配置文件：</p>
+<p>找到：</p>
+<p><code>highlight_theme: normal</code>，注释显示有五种显示主题可用，分别是：</p>
+<ul>
+<li>normal </li>
+<li>night </li>
+<li>night eighties</li>
+<li>night blue</li>
+<li>night bright</li>
+</ul>
+<p>选择什么要看个人审美了。</p>
+<p>此时，还不能解决高亮问题，虽然背景会变，但是文字并没起作用。</p>
+<p>包裹代码块的方式很多，有用<code>tab</code>的，也可以用```包围的，好像<code>tab</code>不行，用```可以，但是我就是用```的，发现还是不行，后来发现需要这样：</p>
+<p>```Python<br>code here<br>```<br>即在第一个<br>```后面注明语言类型才可以。</p>
+<p>如此三步才好。有点折腾但是效果还行。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/02/hexo_categories/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/02/hexo_categories/" itemprop="url">hexo之next主题添加分类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T13:00:00+08:00">2018-03-02</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo主题配置/" itemprop="url" rel="index"><span itemprop="name">Hexo主题配置</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="hexo之next主题添加分类"><a href="#hexo之next主题添加分类" class="headerlink" title="hexo之next主题添加分类"></a>hexo之next主题添加分类</h2><p>@(Hexo+Github)</p>
+<p>当前博客主题用的是next最新版，最初是比较简陋的界面，一直放着没怎么动，测试了下Latex的显示效果没有达到在CSDN<a href="http://blog.csdn.net/u011240016" target="_blank" rel="external">我的博客</a>上的效果，就很失望，没再此地更新。</p>
+<p>但是今年（2018）年突然发现hexo可以做出很酷的静态站点。</p>
+<p>于是开始作为首发文章的地方。</p>
+<p>下面开始细部的折腾，细节过程记录为文档，以供参考。</p>
+<h3 id="创建分类页面（page）"><a href="#创建分类页面（page）" class="headerlink" title="创建分类页面（page）"></a>创建分类页面（page）</h3><p><strong>第一步</strong>是创建分类显示界面：</p>
+<p><a href="https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2</a></p>
+<p>可以参考这个官方的链接，也可以看我摘出来的文字。</p>
+<p>1.新建一个页面，命名为categories:</p>
+<p><code>hexo new page categories</code></p>
+<p>之所以命名为categories的原因是在next主题的配置文件中，categories是关键词。</p>
+<p>2.编辑新建界面，将页面类型设置为categories，主题将会在这个页面上显示所有的分类：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">---</span></div><div class="line"><span class="attr">title:</span> categories</div><div class="line"><span class="attr">date:</span> <span class="number">2018</span><span class="bullet">-03</span><span class="bullet">-02</span> <span class="number">12</span>:<span class="number">33</span>:<span class="number">16</span></div><div class="line"><span class="attr">type:</span> <span class="string">"categories"</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure>
+<p>这个步骤很有意思，编辑新建界面是什么？当然hexo熟悉一些自然会知道，但是小萌新还是比较懵逼的。实际上调用<code>hexo new page xxx</code>后，会在<code>/source/categories/</code>目录下生成一个<code>index.md</code>文档，在此文档头部加上上面这段即可。实际上，<code>index.md</code>里只需要有这个声明即可，其他内容并不会显示出来，写了也没用。</p>
+<p>PS. 无论是page，还是post的文章，都是以<code>.md</code>格式结尾，在<code>hexo g</code>的过程中会产生对应的<code>.html</code>文档，然后<code>hexo d</code>到Github上的也只是html文档，不是<code>.md</code>格式的文档。</p>
+<p>另外就是，需要注意一点：如果有启用多说 或者 Disqus 评论，默认页面也会带有评论。需要关闭的话，请添加字段 comments 并将值设置为 false，如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">---</span></div><div class="line"><span class="attr">title:</span> categories</div><div class="line"><span class="attr">date:</span> <span class="number">2018</span><span class="bullet">-03</span><span class="bullet">-02</span> <span class="number">12</span>:<span class="number">33</span>:<span class="number">16</span></div><div class="line"><span class="attr">type:</span> <span class="string">"categories"</span></div><div class="line"><span class="attr">comments:</span> <span class="literal">false</span></div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure>
+<p>这个暂时不是很明白，再说吧。</p>
+<p>3.在菜单中添加链接，此时需要编辑主题的<code>_config.yml</code>，hexo的配置文件事先写好了，但是处于注释状态，需要去除注释即可：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">menu</span>:</div><div class="line">  home: / </div><div class="line">  <span class="keyword">tag</span><span class="variable">s:</span> /<span class="keyword">tags</span></div><div class="line">  categorie<span class="variable">s:</span> /categories</div><div class="line">  archive<span class="variable">s:</span> /archives</div></pre></td></tr></table></figure>
+<p>内容更少些。</p>
+<p>我从自己的配置文件中拿出来的是这样的，注意通过或链接的内容，暂时我也不是很明白用意，猜测是多一种选择吧，官方文档给出的是：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">menu:</span></div><div class="line"><span class="symbol">  home:</span> / || home</div><div class="line"><span class="symbol">  about:</span> <span class="meta-keyword">/about/</span> || user</div><div class="line"><span class="symbol">  tags:</span> <span class="meta-keyword">/tags/</span> || tags</div><div class="line"><span class="symbol">  categories:</span> <span class="meta-keyword">/categories/</span> || th</div><div class="line"><span class="symbol">  archives:</span> <span class="meta-keyword">/archives/</span> || archive</div></pre></td></tr></table></figure>
+<p>此时准备完毕，去网站上点开分类这栏，会发现没有任何分类，但是分类这栏已经是有内容的了，不再是404错误。因为还没有文章关联到分类。</p>
+<h3 id="添加文章分类关联"><a href="#添加文章分类关联" class="headerlink" title="添加文章分类关联"></a>添加文章分类关联</h3><p>第二步是为写的post文章指定分类：</p>
+<p>上面是next主题官方给出的配置方案，而如何为文章关联分类，是hexo官方给出的。</p>
+<p><strong>hexo的front-matter</strong>概念</p>
+<p>即在xxx.md上方指定文章title, date, tag等的地方。<br>仔细想想可以明白，分类也应该指定在这个地方。</p>
+<p>就是在文章头部指定一个<code>categories</code>属性即可，注意，这些属性和属性值之间必须有一个空格，否则解析错误。</p>
+<p>示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">---</span></div><div class="line"><span class="attr">title:</span> 杀死一只知更鸟观后感</div><div class="line"><span class="attr">date:</span> <span class="number">2018</span><span class="bullet">-03</span><span class="bullet">-01</span> <span class="number">21</span>:<span class="number">46</span>:<span class="number">12</span></div><div class="line"><span class="attr">tags:</span></div><div class="line"><span class="attr">categories:</span> 电影评论</div><div class="line"><span class="meta">---</span></div></pre></td></tr></table></figure>
+<p>这样不仅本篇文章上会有分类名，点击菜单栏也会显示各个分类。</p>
+<p>分类的名字的指定是自由的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/01/kill-a-mockingbird/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -486,6 +823,24 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/" itemprop="url" rel="index"><span itemprop="name">读书</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -686,7 +1041,7 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">&apos;&apos;&apos;读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。</div><div class="line"></div><div class="line">输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。</div><div class="line"></div><div class="line">输出格式：在一行内输出n的各位数字之和的每一位，拼音数字间有1 空格，但一行中最后一个拼音数字后没有空格。</div><div class="line"></div><div class="line">输入样例：</div><div class="line">1234567890987654321123456789</div><div class="line">输出样例：</div><div class="line">yi san wu</div><div class="line"></div><div class="line">&apos;&apos;&apos;</div><div class="line"></div><div class="line"># 需要先建个字典</div><div class="line">dic = &#123;&#125;</div><div class="line"></div><div class="line">def construct_dictionary():</div><div class="line"></div><div class="line">    dic[&apos;0&apos;] = &apos;ling&apos;</div><div class="line">    dic[&apos;1&apos;] = &apos;yi&apos;</div><div class="line">    dic[&apos;2&apos;] = &apos;er&apos;</div><div class="line">    dic[&apos;3&apos;] = &apos;san&apos;</div><div class="line">    dic[&apos;4&apos;] = &apos;si&apos;</div><div class="line">    dic[&apos;5&apos;] = &apos;wu&apos;</div><div class="line">    dic[&apos;6&apos;] = &apos;liu&apos;</div><div class="line">    dic[&apos;7&apos;] = &apos;qi&apos;</div><div class="line">    dic[&apos;8&apos;] = &apos;ba&apos;</div><div class="line">    dic[&apos;9&apos;] = &apos;jiu&apos;</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line"></div><div class="line">    construct_dictionary()</div><div class="line"></div><div class="line">    raw = input()</div><div class="line">    sum = 0</div><div class="line">    for i in range(len(raw)):</div><div class="line">        sum += eval(raw[i])</div><div class="line"></div><div class="line">    sum_str = str(sum)</div><div class="line">    # print(res)</div><div class="line">    # 控制输出</div><div class="line">    res = &apos;&apos;</div><div class="line">    for j in range(len(sum_str)):</div><div class="line">        if j != len(sum_str) - 1:</div><div class="line">            res += dic[sum_str[j]] + &apos; &apos;</div><div class="line">        else:</div><div class="line">            res += dic[sum_str[j]]</div><div class="line">    print(res)</div></pre></td></tr></table></figure>
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。</span></div><div class="line"></div><div class="line">输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10100。</div><div class="line"></div><div class="line">输出格式：在一行内输出n的各位数字之和的每一位，拼音数字间有1 空格，但一行中最后一个拼音数字后没有空格。</div><div class="line"></div><div class="line">输入样例：</div><div class="line">1234567890987654321123456789</div><div class="line">输出样例：</div><div class="line">yi san wu</div><div class="line"></div><div class="line">'''</div><div class="line"></div><div class="line"><span class="comment"># 需要先建个字典</span></div><div class="line">dic = &#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">construct_dictionary</span><span class="params">()</span>:</span></div><div class="line"></div><div class="line">    dic[<span class="string">'0'</span>] = <span class="string">'ling'</span></div><div class="line">    dic[<span class="string">'1'</span>] = <span class="string">'yi'</span></div><div class="line">    dic[<span class="string">'2'</span>] = <span class="string">'er'</span></div><div class="line">    dic[<span class="string">'3'</span>] = <span class="string">'san'</span></div><div class="line">    dic[<span class="string">'4'</span>] = <span class="string">'si'</span></div><div class="line">    dic[<span class="string">'5'</span>] = <span class="string">'wu'</span></div><div class="line">    dic[<span class="string">'6'</span>] = <span class="string">'liu'</span></div><div class="line">    dic[<span class="string">'7'</span>] = <span class="string">'qi'</span></div><div class="line">    dic[<span class="string">'8'</span>] = <span class="string">'ba'</span></div><div class="line">    dic[<span class="string">'9'</span>] = <span class="string">'jiu'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line"></div><div class="line">    construct_dictionary()</div><div class="line"></div><div class="line">    raw = input()</div><div class="line">    sum = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(raw)):</div><div class="line">        sum += eval(raw[i])</div><div class="line"></div><div class="line">    sum_str = str(sum)</div><div class="line">    <span class="comment"># print(res)</span></div><div class="line">    <span class="comment"># 控制输出</span></div><div class="line">    res = <span class="string">''</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(sum_str)):</div><div class="line">        <span class="keyword">if</span> j != len(sum_str) - <span class="number">1</span>:</div><div class="line">            res += dic[sum_str[j]] + <span class="string">' '</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            res += dic[sum_str[j]]</div><div class="line">    print(res)</div></pre></td></tr></table></figure>
           
         
       
@@ -826,7 +1181,7 @@
         
           
             <p>PAT乙级题目1001，命名规则是以b打头，后面跟着的是题号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&apos;&apos;&apos;</div><div class="line">卡拉兹(Callatz)猜想：</div><div class="line"></div><div class="line">对任何一个自然数n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把(3n+1)砍掉一半。这样一直反复砍下去，最后一定在某一步得到n=1。卡拉兹在1950年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证(3n+1)，以至于有人说这是一个阴谋，卡拉兹是在蓄意延缓美国数学界教学与科研的进展……</div><div class="line"></div><div class="line">我们今天的题目不是证明卡拉兹猜想，而是对给定的任一不超过1000的正整数n，简单地数一下，需要多少步（砍几下）才能得到n=1？</div><div class="line"></div><div class="line">输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。</div><div class="line"></div><div class="line">输出格式：输出从n计算到1需要的步数。</div><div class="line"></div><div class="line">输入样例：</div><div class="line">3</div><div class="line">输出样例：</div><div class="line">5</div><div class="line">&apos;&apos;&apos;</div><div class="line"></div><div class="line">a = eval(input())</div><div class="line"></div><div class="line">count = 0</div><div class="line"></div><div class="line"># 如果是偶数</div><div class="line">while(a != 1):</div><div class="line">    if a % 2 == 0:</div><div class="line">        a /= 2</div><div class="line">        count += 1</div><div class="line">    else:</div><div class="line">        a = 3 * a + 1</div><div class="line">        a /= 2</div><div class="line">        count += 1</div><div class="line">print(count)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''</span></div><div class="line">卡拉兹(Callatz)猜想：</div><div class="line"></div><div class="line">对任何一个自然数n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把(3n+1)砍掉一半。这样一直反复砍下去，最后一定在某一步得到n=1。卡拉兹在1950年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证(3n+1)，以至于有人说这是一个阴谋，卡拉兹是在蓄意延缓美国数学界教学与科研的进展……</div><div class="line"></div><div class="line">我们今天的题目不是证明卡拉兹猜想，而是对给定的任一不超过1000的正整数n，简单地数一下，需要多少步（砍几下）才能得到n=1？</div><div class="line"></div><div class="line">输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。</div><div class="line"></div><div class="line">输出格式：输出从n计算到1需要的步数。</div><div class="line"></div><div class="line">输入样例：</div><div class="line">3</div><div class="line">输出样例：</div><div class="line">5</div><div class="line">'''</div><div class="line"></div><div class="line">a = eval(input())</div><div class="line"></div><div class="line">count = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment"># 如果是偶数</span></div><div class="line"><span class="keyword">while</span>(a != <span class="number">1</span>):</div><div class="line">    <span class="keyword">if</span> a % <span class="number">2</span> == <span class="number">0</span>:</div><div class="line">        a /= <span class="number">2</span></div><div class="line">        count += <span class="number">1</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        a = <span class="number">3</span> * a + <span class="number">1</span></div><div class="line">        a /= <span class="number">2</span></div><div class="line">        count += <span class="number">1</span></div><div class="line">print(count)</div></pre></td></tr></table></figure>
           
         
       
@@ -917,6 +1272,24 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/区块链/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1028,7 +1401,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/26/DAO/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/26/contents/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -1047,7 +1420,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/26/DAO/" itemprop="url">分布式自治组织</a></h1>
+                <a class="post-title-link" href="/2018/02/26/contents/" itemprop="url">区块链项目开发指南大纲</a></h1>
         
 
         <div class="post-meta">
@@ -1059,7 +1432,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T16:46:58+08:00">2018-02-26</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T14:00:34+08:00">2018-02-26</time>
             
 
             
@@ -1068,6 +1441,24 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/区块链/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1098,22 +1489,20 @@
       
         
           
-            <h3 id="分布式自治组织-DAO"><a href="#分布式自治组织-DAO" class="headerlink" title="分布式自治组织 : DAO"></a>分布式自治组织 : DAO</h3><p>@(区块链)</p>
-<p><a href="https://en.wikipedia.org/wiki/Decentralized_autonomous_organization" target="_blank" rel="external">https://en.wikipedia.org/wiki/Decentralized_autonomous_organization</a></p>
-<p>引出DAO的概念之前，需要澄清与The DAO的关系，DAO表示的是一种组织形式，而The DAO则是具体的一个DAO形式的公司。</p>
-<p>DAO全称是Decentralized Autonomous Organization. 也称作Decentralized Autonomous Corporation. 这种形式的组织的运行完全通过计算机程序，这类程序称作智能合约。 而一个DAO组织的财务事务记录以及程序规则都是放在区块链上运行的。 <strong>这类组织的精准的法律状态是不清楚的。</strong></p>
-<p>这种完全由计算机代码控制运作的类似公司的实体，没有founder， 没有CEO，没有CTO，没有人事财务研发市场销售部，彻底根除了影响公司效率的认为因素，对于现行的公司体制是历史性的变革。</p>
-<h3 id="The-DAO"><a href="#The-DAO" class="headerlink" title="The DAO"></a>The DAO</h3><p>基于以太坊的众筹项目。</p>
-<p>通过以太坊的智能合约功能，很容易开发出定制化的众筹代码。The DAO的众筹代码仅仅只有几百行。The DAO的成功，启发了后来井喷式的众筹项目，尤其是区块链领域的，几乎都在以太坊平台进行。</p>
-<p>The DAO的目标是同时为商业的和非商业的企业提供去中心化的商业模式。</p>
-<p>The DAO是无国籍的，不绑定任何国家，因此政府如何应对这种无国籍的基金还不可知。</p>
-<p>The DAO在2016年进行众筹。是史上最大笔的众筹。使用的是以太坊的智能合约平台完成。</p>
-<p>The DAO本质上是个风险投资基金(VC)。通过以太坊筹集资金，这些资金会被锁定在智能合约中，行为由智能合约中的代码主导。</p>
-<p>每个众筹人按照出资数额获取相应的DAO代币，具有审查项目和投票表决的权利。</p>
-<p>从这个意义上看，DAO代币像是股票。参与众筹的人还有权提出投资项目的议案，供The DAO审核。<strong>投资议案</strong>（注意到The DAO是VC）由全体代币持有人投票表决。每个代币代表一票。议案得到需要的足够的票数支持，相应的款项就会自动划给该投资项目。</p>
-<p>传统的VC是由经验丰富老道的专业人士制定，而在The DAO中，决策来自于众智。即：综合许多人的智慧，可以得出比某个专家更好的结论。</p>
-<p>P.S. 这一点我是持保留态度的。</p>
-<p>投资收益按照一定的规则回馈给代币持有人。</p>
+            <h3 id="区块链项目开发指南大纲"><a href="#区块链项目开发指南大纲" class="headerlink" title="区块链项目开发指南大纲"></a>区块链项目开发指南大纲</h3><p>@(BlockChains)</p>
+<ol>
+<li>去中心化应用概览</li>
+<li>以太坊的工作原理</li>
+<li>编写智能合约</li>
+<li>开始使用web3.js</li>
+<li>创建钱包服务</li>
+<li>创建智能合约部署平台</li>
+<li>创建投注App</li>
+<li>创建企业级智能合约</li>
+<li>创建联盟区块链</li>
+</ol>
+<p>本系列学习笔记主要依托《区块链项目开发指南》一书，通过大纲我们可以看到本书的行文方式是项目驱动，必须围绕着代码来理解。单纯只读下来是没有任何作用的。所以我将围绕着书中提到的几个项目，动手实际操作，记录此过程中遇到的问题以及解决方案，加上自己的理解。希望能够帮到大家。</p>
+<p>Github地址是：<a href="https://github.com/Bingyy/BlockChain" target="_blank" rel="external">https://github.com/Bingyy/BlockChain</a></p>
 
           
         
@@ -1165,7 +1554,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/26/contents/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/26/DAO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -1184,7 +1573,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/26/contents/" itemprop="url">区块链项目开发指南大纲</a></h1>
+                <a class="post-title-link" href="/2018/02/26/DAO/" itemprop="url">分布式自治组织</a></h1>
         
 
         <div class="post-meta">
@@ -1196,7 +1585,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T14:00:34+08:00">2018-02-26</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T12:00:00+08:00">2018-02-26</time>
             
 
             
@@ -1205,6 +1594,24 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/区块链/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1235,20 +1642,22 @@
       
         
           
-            <h3 id="区块链项目开发指南大纲"><a href="#区块链项目开发指南大纲" class="headerlink" title="区块链项目开发指南大纲"></a>区块链项目开发指南大纲</h3><p>@(BlockChains)</p>
-<ol>
-<li>去中心化应用概览</li>
-<li>以太坊的工作原理</li>
-<li>编写智能合约</li>
-<li>开始使用web3.js</li>
-<li>创建钱包服务</li>
-<li>创建智能合约部署平台</li>
-<li>创建投注App</li>
-<li>创建企业级智能合约</li>
-<li>创建联盟区块链</li>
-</ol>
-<p>本系列学习笔记主要依托《区块链项目开发指南》一书，通过大纲我们可以看到本书的行文方式是项目驱动，必须围绕着代码来理解。单纯只读下来是没有任何作用的。所以我将围绕着书中提到的几个项目，动手实际操作，记录此过程中遇到的问题以及解决方案，加上自己的理解。希望能够帮到大家。</p>
-<p>Github地址是：<a href="https://github.com/Bingyy/BlockChain" target="_blank" rel="external">https://github.com/Bingyy/BlockChain</a></p>
+            <h3 id="分布式自治组织-DAO"><a href="#分布式自治组织-DAO" class="headerlink" title="分布式自治组织 : DAO"></a>分布式自治组织 : DAO</h3><p>@(区块链)</p>
+<p><a href="https://en.wikipedia.org/wiki/Decentralized_autonomous_organization" target="_blank" rel="external">https://en.wikipedia.org/wiki/Decentralized_autonomous_organization</a></p>
+<p>引出DAO的概念之前，需要澄清与The DAO的关系，DAO表示的是一种组织形式，而The DAO则是具体的一个DAO形式的公司。</p>
+<p>DAO全称是Decentralized Autonomous Organization. 也称作Decentralized Autonomous Corporation. 这种形式的组织的运行完全通过计算机程序，这类程序称作智能合约。 而一个DAO组织的财务事务记录以及程序规则都是放在区块链上运行的。 <strong>这类组织的精准的法律状态是不清楚的。</strong></p>
+<p>这种完全由计算机代码控制运作的类似公司的实体，没有founder， 没有CEO，没有CTO，没有人事财务研发市场销售部，彻底根除了影响公司效率的认为因素，对于现行的公司体制是历史性的变革。</p>
+<h3 id="The-DAO"><a href="#The-DAO" class="headerlink" title="The DAO"></a>The DAO</h3><p>基于以太坊的众筹项目。</p>
+<p>通过以太坊的智能合约功能，很容易开发出定制化的众筹代码。The DAO的众筹代码仅仅只有几百行。The DAO的成功，启发了后来井喷式的众筹项目，尤其是区块链领域的，几乎都在以太坊平台进行。</p>
+<p>The DAO的目标是同时为商业的和非商业的企业提供去中心化的商业模式。</p>
+<p>The DAO是无国籍的，不绑定任何国家，因此政府如何应对这种无国籍的基金还不可知。</p>
+<p>The DAO在2016年进行众筹。是史上最大笔的众筹。使用的是以太坊的智能合约平台完成。</p>
+<p>The DAO本质上是个风险投资基金(VC)。通过以太坊筹集资金，这些资金会被锁定在智能合约中，行为由智能合约中的代码主导。</p>
+<p>每个众筹人按照出资数额获取相应的DAO代币，具有审查项目和投票表决的权利。</p>
+<p>从这个意义上看，DAO代币像是股票。参与众筹的人还有权提出投资项目的议案，供The DAO审核。<strong>投资议案</strong>（注意到The DAO是VC）由全体代币持有人投票表决。每个代币代表一票。议案得到需要的足够的票数支持，相应的款项就会自动划给该投资项目。</p>
+<p>传统的VC是由经验丰富老道的专业人士制定，而在The DAO中，决策来自于众智。即：综合许多人的智慧，可以得出比某个专家更好的结论。</p>
+<p>P.S. 这一点我是持保留态度的。</p>
+<p>投资收益按照一定的规则回馈给代币持有人。</p>
 
           
         
@@ -1425,249 +1834,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/01/My-Gallery/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bing's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/01/My-Gallery/" itemprop="url">My Gallery</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T14:21:28+08:00">2018-02-01</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/30/20180130/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bing's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/30/20180130/" itemprop="url">20180130</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T22:32:53+08:00">2018-01-30</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>测试生成文本。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1715,7 +1881,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1732,7 +1898,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
