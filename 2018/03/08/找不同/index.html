@@ -103,23 +103,26 @@
   <meta name="keywords" content="Hexo, NexT" />
 
 
-<meta name="description" content="PAT乙级题目1001，命名规则是以b打头，后面跟着的是题号。">
+<meta name="description" content="放一段代码上来：
+1234567891011121314151617181920212223242526272829def neuron_layer(X, n_neurons, name, activation=None):    with tf.name_scope(name):        n_inputs = int(X.get_shape()[1])        stddev = 2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PAT乙级1001题解">
-<meta property="og:url" content="http://yoursite.com/2018/02/28/b1001/index.html">
+<meta property="og:title" content="找不同">
+<meta property="og:url" content="http://yoursite.com/2018/03/08/找不同/index.html">
 <meta property="og:site_name" content="Bing's Blog">
-<meta property="og:description" content="PAT乙级题目1001，命名规则是以b打头，后面跟着的是题号。">
-<meta property="og:updated_time" content="2018-03-02T06:05:22.836Z">
+<meta property="og:description" content="放一段代码上来：
+1234567891011121314151617181920212223242526272829def neuron_layer(X, n_neurons, name, activation=None):    with tf.name_scope(name):        n_inputs = int(X.get_shape()[1])        stddev = 2">
+<meta property="og:updated_time" content="2018-03-08T11:50:58.639Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PAT乙级1001题解">
-<meta name="twitter:description" content="PAT乙级题目1001，命名规则是以b打头，后面跟着的是题号。">
+<meta name="twitter:title" content="找不同">
+<meta name="twitter:description" content="放一段代码上来：
+1234567891011121314151617181920212223242526272829def neuron_layer(X, n_neurons, name, activation=None):    with tf.name_scope(name):        n_inputs = int(X.get_shape()[1])        stddev = 2">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/28/b1001/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/08/找不同/"/>
 
 
 
@@ -128,7 +131,7 @@
     sidebar: "",
   };
 </script>
-  <title>PAT乙级1001题解 | Bing's Blog</title>
+  <title>找不同 | Bing's Blog</title>
   
 
 
@@ -322,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/28/b1001/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/08/找不同/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -339,7 +342,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PAT乙级1001题解</h1>
+          <h1 class="post-title" itemprop="name headline">找不同</h1>
         
 
         <div class="post-meta">
@@ -351,7 +354,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T15:57:46+08:00">2018-02-28</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T19:43:34+08:00">2018-03-08</time>
             
 
             
@@ -372,7 +375,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PAT乙级题解/" itemprop="url" rel="index"><span itemprop="name">PAT乙级题解</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
 
                 
                 
@@ -406,8 +409,13 @@
       
 
       
-        <p>PAT乙级题目1001，命名规则是以b打头，后面跟着的是题号。<br><a id="more"></a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''</span></div><div class="line">卡拉兹(Callatz)猜想：</div><div class="line"></div><div class="line">对任何一个自然数n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把(3n+1)砍掉一半。这样一直反复砍下去，最后一定在某一步得到n=1。卡拉兹在1950年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证(3n+1)，以至于有人说这是一个阴谋，卡拉兹是在蓄意延缓美国数学界教学与科研的进展……</div><div class="line"></div><div class="line">我们今天的题目不是证明卡拉兹猜想，而是对给定的任一不超过1000的正整数n，简单地数一下，需要多少步（砍几下）才能得到n=1？</div><div class="line"></div><div class="line">输入格式：每个测试输入包含1个测试用例，即给出自然数n的值。</div><div class="line"></div><div class="line">输出格式：输出从n计算到1需要的步数。</div><div class="line"></div><div class="line">输入样例：</div><div class="line">3</div><div class="line">输出样例：</div><div class="line">5</div><div class="line">'''</div><div class="line"></div><div class="line">a = eval(input())</div><div class="line"></div><div class="line">count = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment"># 如果是偶数</span></div><div class="line"><span class="keyword">while</span>(a != <span class="number">1</span>):</div><div class="line">    <span class="keyword">if</span> a % <span class="number">2</span> == <span class="number">0</span>:</div><div class="line">        a /= <span class="number">2</span></div><div class="line">        count += <span class="number">1</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        a = <span class="number">3</span> * a + <span class="number">1</span></div><div class="line">        a /= <span class="number">2</span></div><div class="line">        count += <span class="number">1</span></div><div class="line">print(count)</div></pre></td></tr></table></figure>
+        <p>放一段代码上来：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">neuron_layer</span><span class="params">(X, n_neurons, name, activation=None)</span>:</span></div><div class="line">    <span class="keyword">with</span> tf.name_scope(name):</div><div class="line">        n_inputs = int(X.get_shape()[<span class="number">1</span>])</div><div class="line">        stddev = <span class="number">2</span> / np.sqrt(n_inputs)</div><div class="line">        init = tf.truncated_normal((n_inputs, n_neurons), stddev=stddev)</div><div class="line">        W = tf.Variable(init, name=<span class="string">"kernel"</span>)</div><div class="line">        b = tf.Variable(tf.zeros([n_neurons]), name=<span class="string">"bias"</span>)</div><div class="line">        Z = tf.matmul(X, W) + b</div><div class="line">        <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> activation(Z)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> Z</div><div class="line">    </div><div class="line"><span class="comment"># 下面是我抄上面的 </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">neuron_layer</span><span class="params">(X, n_neurons, name, activation=None)</span>:</span></div><div class="line">    <span class="keyword">with</span> tf.name_scope(name):</div><div class="line">        n_inputss = int(X.get_shape()[<span class="number">1</span>]) <span class="comment"># 这里！</span></div><div class="line">        stddev = <span class="number">2</span> / np.sqrt(n_inputs)</div><div class="line">        </div><div class="line">        init = tf.truncated_normal((n_inputs, n_neurons),stddev=stddev)</div><div class="line">        </div><div class="line">        W = tf.Variable(init, name=<span class="string">'kernel'</span>)</div><div class="line">        b = tf.Variable(tf.zeros([n_neurons]),name=<span class="string">'bias'</span>)</div><div class="line">        Z = tf.matmul(X, W) + b</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> activation(Z)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> Z</div></pre></td></tr></table></figure>
+<p>今天在跟着练习《Hands On ML》这本书上的代码时，我抄写的代码，但是运行起来出错，跟踪了下代码逻辑，没错的。<br>就一行一行比对，但是，就是找不到。</p>
+<p>后来全粘贴到Sublime，一个单词一个单词对比，就是选中该单词，看相同的单词是否出现，很快就找到了。</p>
+<p>TF的代码还是要多多写，不然还是很不熟悉。</p>
+<p>实践出真知吧。</p>
+
       
     </div>
     
@@ -431,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/26/Solidity_Intro/" rel="next" title="Solidity语言简介">
-                <i class="fa fa-chevron-left"></i> Solidity语言简介
+              <a href="/2018/03/04/番茄工作法/" rel="next" title="番茄工作法">
+                <i class="fa fa-chevron-left"></i> 番茄工作法
               </a>
             
           </div>
@@ -440,10 +448,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/28/b1002/" rel="prev" title="PAT乙级1002题解">
-                PAT乙级1002题解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
