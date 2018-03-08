@@ -103,19 +103,16 @@
   <meta name="keywords" content="Hexo, NexT" />
 
 
-<meta name="description" content="放一段代码上来：
-1234567891011121314151617181920212223242526272829def neuron_layer(X, n_neurons, name, activation=None):    with tf.name_scope(name):        n_inputs = int(X.get_shape()[1])        stddev = 2">
+<meta name="description" content="放一段代码上来：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="找不同">
 <meta property="og:url" content="http://yoursite.com/2018/03/08/找不同/index.html">
 <meta property="og:site_name" content="Bing's Blog">
-<meta property="og:description" content="放一段代码上来：
-1234567891011121314151617181920212223242526272829def neuron_layer(X, n_neurons, name, activation=None):    with tf.name_scope(name):        n_inputs = int(X.get_shape()[1])        stddev = 2">
-<meta property="og:updated_time" content="2018-03-08T11:50:58.639Z">
+<meta property="og:description" content="放一段代码上来：">
+<meta property="og:updated_time" content="2018-03-08T12:36:01.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="找不同">
-<meta name="twitter:description" content="放一段代码上来：
-1234567891011121314151617181920212223242526272829def neuron_layer(X, n_neurons, name, activation=None):    with tf.name_scope(name):        n_inputs = int(X.get_shape()[1])        stddev = 2">
+<meta name="twitter:description" content="放一段代码上来：">
 
 
 
@@ -410,6 +407,7 @@
 
       
         <p>放一段代码上来：</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">neuron_layer</span><span class="params">(X, n_neurons, name, activation=None)</span>:</span></div><div class="line">    <span class="keyword">with</span> tf.name_scope(name):</div><div class="line">        n_inputs = int(X.get_shape()[<span class="number">1</span>])</div><div class="line">        stddev = <span class="number">2</span> / np.sqrt(n_inputs)</div><div class="line">        init = tf.truncated_normal((n_inputs, n_neurons), stddev=stddev)</div><div class="line">        W = tf.Variable(init, name=<span class="string">"kernel"</span>)</div><div class="line">        b = tf.Variable(tf.zeros([n_neurons]), name=<span class="string">"bias"</span>)</div><div class="line">        Z = tf.matmul(X, W) + b</div><div class="line">        <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> activation(Z)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> Z</div><div class="line">    </div><div class="line"><span class="comment"># 下面是我抄上面的 </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">neuron_layer</span><span class="params">(X, n_neurons, name, activation=None)</span>:</span></div><div class="line">    <span class="keyword">with</span> tf.name_scope(name):</div><div class="line">        n_inputss = int(X.get_shape()[<span class="number">1</span>]) <span class="comment"># 这里！</span></div><div class="line">        stddev = <span class="number">2</span> / np.sqrt(n_inputs)</div><div class="line">        </div><div class="line">        init = tf.truncated_normal((n_inputs, n_neurons),stddev=stddev)</div><div class="line">        </div><div class="line">        W = tf.Variable(init, name=<span class="string">'kernel'</span>)</div><div class="line">        b = tf.Variable(tf.zeros([n_neurons]),name=<span class="string">'bias'</span>)</div><div class="line">        Z = tf.matmul(X, W) + b</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> activation(Z)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> Z</div></pre></td></tr></table></figure>
 <p>今天在跟着练习《Hands On ML》这本书上的代码时，我抄写的代码，但是运行起来出错，跟踪了下代码逻辑，没错的。<br>就一行一行比对，但是，就是找不到。</p>
 <p>后来全粘贴到Sublime，一个单词一个单词对比，就是选中该单词，看相同的单词是否出现，很快就找到了。</p>

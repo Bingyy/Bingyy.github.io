@@ -406,17 +406,14 @@
 
       
         
-          
-            <p>看下面的代码：</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设计图阶段</span></div><div class="line"><span class="built_in">import</span> tensorflow as atf</div><div class="line"></div><div class="line"><span class="attr">n_inputs</span> = <span class="number">28</span> * <span class="number">28</span> <span class="comment"># MNIST</span></div><div class="line"><span class="attr">n_hidden1</span> = <span class="number">300</span></div><div class="line"><span class="attr">n_hidden2</span> = <span class="number">100</span></div><div class="line"><span class="attr">n_outputs</span> = <span class="number">10</span> <span class="comment"># 10个类别</span></div><div class="line"></div><div class="line">reset_graph() <span class="comment"># 重置图</span></div><div class="line"></div><div class="line"><span class="comment"># None表示待定，提供了另一个灵活度</span></div><div class="line"><span class="attr">X</span> = tf.placeholder(tf.float32, <span class="attr">shape=(None,n_inputs),</span> <span class="attr">name='X')</span></div><div class="line"><span class="attr">y</span> = tf.placeholder(tf.int64,<span class="attr">shape=(None),</span> <span class="attr">name='y')</span></div><div class="line"></div><div class="line">def neuron_layer(X, n_neurons, name, <span class="attr">activation=None):</span></div><div class="line">    <span class="keyword">with</span> tf.name_scope(name):</div><div class="line">        <span class="attr">n_inputs</span> = int(X.get_shape()[<span class="number">1</span>])</div><div class="line">        <span class="attr">stddev</span> = <span class="number">2</span> / np.sqrt(n_inputs)</div><div class="line">        </div><div class="line">        <span class="attr">init</span> = tf.truncated_normal((n_inputs, n_neurons),<span class="attr">stddev=stddev)</span></div><div class="line">        </div><div class="line">        <span class="attr">W</span> = tf.Variable(init, <span class="attr">name='kernel')</span></div><div class="line">        <span class="attr">b</span> = tf.Variable(tf.zeros([n_neurons]),<span class="attr">name='bias')</span></div><div class="line">        <span class="attr">Z</span> = tf.matmul(X, W) + b</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> activation is not None:</div><div class="line">            return activation(Z)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            return Z       </div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.name_scope('dnn'): <span class="comment"># 用name_scope组织代码</span></div><div class="line">    </div><div class="line">    <span class="attr">hidden1</span> = neuron_layer(X,n_hidden1,<span class="attr">name='hidden1',activation=tf.nn.relu)</span></div><div class="line">    <span class="attr">hidden2</span> = neuron_layer(hidden1,n_hidden2,<span class="attr">name='hidden2',activation=tf.nn.relu)</span></div><div class="line">    <span class="attr">logits</span> = neuron_layer(hidden2,n_outputs,<span class="attr">name='outputs')</span></div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.name_scope('loss'):</div><div class="line">    <span class="attr">xentropy</span> = tf.nn.sparse_softmax_cross_entropy_with_logits(<span class="attr">labels=y,logits=logits)</span></div><div class="line">    <span class="attr">loss</span> = tf.reduce_mean(xentropy, <span class="attr">name='loss')</span></div><div class="line"></div><div class="line"><span class="attr">ln</span> = <span class="number">0.01</span></div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.name_scope('train'):</div><div class="line">    <span class="attr">optimizer</span> = tf.train.GradientDescentOptimizer(ln)</div><div class="line">    <span class="attr">training_op</span> = optimizer.minimize(loss)</div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.name_scope('eval'):</div><div class="line">    <span class="attr">correct</span> = tf.nn.in_top_k(logits,y,<span class="number">1</span>)</div><div class="line">    <span class="attr">accuracy</span> = tf.reduce_mean(tf.cast(correct, tf.float32))</div><div class="line"></div><div class="line"><span class="attr">init</span> = tf.global_variables_initializer()</div><div class="line"><span class="attr">saver</span> = tf.train.Saver() <span class="comment"># 保存模型</span></div><div class="line"></div><div class="line"><span class="attr">n_epoches</span> = <span class="number">40</span></div><div class="line"><span class="attr">batch_size</span> = <span class="number">50</span></div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.Session() as sess:</div><div class="line">    init.run()</div><div class="line">    for epoch <span class="keyword">in</span> range(n_epoches):</div><div class="line">        for iteration <span class="keyword">in</span> range(mnist.train.num_examples // batch_size):</div><div class="line">            X_batch, <span class="attr">y_batch</span> = mnist.train.next_batch(batch_size)</div><div class="line">            sess.run(training_op,<span class="attr">feed_dict=&#123;X:X_batch,y:y_batch&#125;)</span></div><div class="line">        <span class="attr">acc_train</span> = accuracy.eval(<span class="attr">feed_dict=&#123;X:</span> X_batch, y: y_batch&#125;)</div><div class="line">        <span class="attr">acc_val</span> = accuracy.eval(<span class="attr">feed_dict=&#123;X:mnist.validation.images,y:mnist.validation.labels&#125;)</span></div><div class="line">        print(epoch, <span class="string">"Train accuracy:"</span>, acc_train, <span class="string">"Val accuracy:"</span>, acc_val)</div><div class="line">    <span class="attr">save_path</span> = saver.save(sess, <span class="string">"./my_model_final.ckpt"</span>)</div></pre></td></tr></table></figure>
-<p>之前一直纠结于有一个问题：到底是<code>tf.matmul(X,W)</code>还是用<code>tf.matmul(W,X)</code>.</p>
-<p>在Andrew Ng的课程里，他推荐了用第二种，也就是将X按照列来堆叠，但是具体到问题中时，我还是很困惑，看到许多TF代码都是第一种。</p>
-<p>今天讲一种判断方法：</p>
-<p>通过X定义时的<code>None</code>的位置来判断。</p>
-<p>None在前时，只可能是<code>(X,W)</code>因为，二者按照矩阵相乘的方法，中间那个数不能是待定。</p>
-<p>None在后时，只可能是<code>(W,X)</code>,道理与上面相同。</p>
-
-          
+          <p>看下面的代码：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/08/通过None的位置判断是X-W的位置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -701,15 +698,14 @@
 
       
         
-          
-            <p>放一段代码上来：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">neuron_layer</span><span class="params">(X, n_neurons, name, activation=None)</span>:</span></div><div class="line">    <span class="keyword">with</span> tf.name_scope(name):</div><div class="line">        n_inputs = int(X.get_shape()[<span class="number">1</span>])</div><div class="line">        stddev = <span class="number">2</span> / np.sqrt(n_inputs)</div><div class="line">        init = tf.truncated_normal((n_inputs, n_neurons), stddev=stddev)</div><div class="line">        W = tf.Variable(init, name=<span class="string">"kernel"</span>)</div><div class="line">        b = tf.Variable(tf.zeros([n_neurons]), name=<span class="string">"bias"</span>)</div><div class="line">        Z = tf.matmul(X, W) + b</div><div class="line">        <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> activation(Z)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> Z</div><div class="line">    </div><div class="line"><span class="comment"># 下面是我抄上面的 </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">neuron_layer</span><span class="params">(X, n_neurons, name, activation=None)</span>:</span></div><div class="line">    <span class="keyword">with</span> tf.name_scope(name):</div><div class="line">        n_inputss = int(X.get_shape()[<span class="number">1</span>]) <span class="comment"># 这里！</span></div><div class="line">        stddev = <span class="number">2</span> / np.sqrt(n_inputs)</div><div class="line">        </div><div class="line">        init = tf.truncated_normal((n_inputs, n_neurons),stddev=stddev)</div><div class="line">        </div><div class="line">        W = tf.Variable(init, name=<span class="string">'kernel'</span>)</div><div class="line">        b = tf.Variable(tf.zeros([n_neurons]),name=<span class="string">'bias'</span>)</div><div class="line">        Z = tf.matmul(X, W) + b</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span> activation(Z)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> Z</div></pre></td></tr></table></figure>
-<p>今天在跟着练习《Hands On ML》这本书上的代码时，我抄写的代码，但是运行起来出错，跟踪了下代码逻辑，没错的。<br>就一行一行比对，但是，就是找不到。</p>
-<p>后来全粘贴到Sublime，一个单词一个单词对比，就是选中该单词，看相同的单词是否出现，很快就找到了。</p>
-<p>TF的代码还是要多多写，不然还是很不熟悉。</p>
-<p>实践出真知吧。</p>
-
-          
+          <p>放一段代码上来：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/08/找不同/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -846,134 +842,18 @@
 
       
         
-          
-            <h3 id="番茄土豆工作法"><a href="#番茄土豆工作法" class="headerlink" title="番茄土豆工作法"></a>番茄土豆工作法</h3><p>@(番茄工作法)</p>
+          <h3 id="番茄土豆工作法"><a href="#番茄土豆工作法" class="headerlink" title="番茄土豆工作法"></a>番茄土豆工作法</h3><p>@(番茄工作法)</p>
 <h3 id="1-序"><a href="#1-序" class="headerlink" title="1.序"></a>1.序</h3><p>番茄土豆工作法的目的在于：让人们驻足，观察，醒悟，并在此过程中改进自我。</p>
 <p>使得时间不再是紧绷的弦，而是同盟战友。</p>
 <p>利于我们将100%的心力专注于当下，避免不必要的压力和负担。</p>
 <p>我们将学会微笑达成目标，做强者无需逞强用力。</p>
-<p>每一天，判断今天是否需要高效运转。</p>
-<p>番茄钟一天完成12个就很好了，因为在番茄钟内需要集中精力。</p>
-<p>设定番茄钟的个数，努力完成这个目标。</p>
-<p>番茄工作法与Scrum，XP等敏捷方法类似。</p>
-<p>要完成大量工作，重点不在完成工作，而在于能否集中注意力。</p>
-<p>番茄工作法是简单的工具和流程，用于提升个人和团队的生产力，从而可以做到：</p>
-<ul>
-<li>减轻时间焦虑</li>
-<li>提升集中力和注意力，减少中断</li>
-<li>增强决策意识</li>
-<li>唤醒激励和持久激励</li>
-<li>巩固达目标的决心</li>
-<li>完善预估流程，精确保质保量</li>
-<li>改进工作学习流程</li>
-<li>强化决断力，快刀斩乱麻</li>
-</ul>
-<p>核心就是一句话：25分钟内只做一件事。</p>
-<h3 id="2-目录"><a href="#2-目录" class="headerlink" title="2.目录"></a>2.目录</h3><ol>
-<li>一次只做一件事</li>
-<li>背景</li>
-<li>方法</li>
-<li>中断</li>
-<li>预估</li>
-<li>应变</li>
-<li>团队</li>
-</ol>
-<h3 id="第一章：只做一件事"><a href="#第一章：只做一件事" class="headerlink" title="第一章：只做一件事"></a>第一章：只做一件事</h3><blockquote>
-<p>要做到专注，你就得坚决抛开各种杂念。</p>
-</blockquote>
-<p>使用番茄工作法，能够帮你把每一天分成小段，专注在工作上。</p>
-<p>番茄工作法流程：</p>
-<ul>
-<li>列出当天要做的事情</li>
-<li>设置25分钟闹钟</li>
-<li>从第一件事开始</li>
-</ul>
-<p>此外，需要严格做到每日回顾，做每日承诺，控制中断，预估要花的时间。</p>
-<p>要做的事情从最重要的开始做起。</p>
-<p>番茄工作法目的不在于看你自己积累多少个番茄钟，而是一种思维方法，可以用这个方式做任何事情，比如读一本书，用25分钟切割的方式，25分钟内保持专注，休息3~5分钟，开启下一个番茄钟。一段时间内，<strong>保持专注</strong>，效率自然就上来了。</p>
-<p><strong>如何让自己只做最重要的事情？</strong></p>
-<p>分析真正的问题所在，想明白自己想要达成的结果，然后专注于能带来该结果的活动。</p>
-<p>番茄钟停下来，思考：刚才专注的活动是否仍然是重中之重？</p>
-<p><strong>一次只做一件事。</strong></p>
-<p>每一个分段，都可以聚焦，也可以判断自己到底在干嘛，不要虚度光阴。</p>
-<h4 id="为何使用番茄工作法"><a href="#为何使用番茄工作法" class="headerlink" title="为何使用番茄工作法"></a>为何使用番茄工作法</h4><p>导致人们无法完成工作的原因通常有：</p>
-<ul>
-<li>面对复杂，望而却步。</li>
-</ul>
-<p>在25分钟内不能完成的任务，往往会造成拖延。</p>
-<p><strong>拖延能让我们苟且偷安，但是问题并没消失。</strong></p>
-<p>解决方案是：开始行动，25分钟完成，给自己一个奖赏，激励自己继续专注。</p>
-<ul>
-<li>无聊琐事，越拖越久</li>
-</ul>
-<p>不要想完成整件事情需要多久，而是想着完成这个番茄钟其实也没多久，看看这个番茄钟内的成果吧！</p>
-<ul>
-<li>小事忙一天，大事情一样没办</li>
-</ul>
-<p>使用番茄工作法，需要每天早晨做计划，把自己当天分派为为数不多的活动。</p>
-<p>每个番茄钟之前，重新评估活动的优先级，最重要的一项活动先做。确保一直在做最重要的事情，而不是别的事情。</p>
-<ul>
-<li>最后期限，步步紧逼</li>
-</ul>
-<p>25分钟为一次短期迭代，建立可持续发展的步伐，休息时安心休息，工作时一心一意。</p>
-<ul>
-<li>从休息到工作，心智调整不过来</li>
-</ul>
-<p>吃完饭回来，时间经常不自觉溜走，无心工作。番茄工作法是以动作为导向的，开启番茄钟是动作，遵守铃声是动作，填写今日待办表格是动作。习惯成自然，充分利用条件反射的力量。形成肌肉记忆。</p>
-<ul>
-<li>一错再错，不长记性</li>
-</ul>
-<p>为了避免第二天犯同样的错误，番茄工作法需要在一天结束前做三件事：<strong>记录、处理、可视化</strong></p>
-<p>这些是改进个人流程的关键。</p>
-<p>每天都学习，每天都进步。</p>
-<p>好处是，开始是照着书本应用番茄工作法，认清自己的工作习惯后，可以进行调整，形成自己的专属的工作方法。</p>
-<ul>
-<li>没想到一件事情要做这么久</li>
-</ul>
-<p>活动拆分为小项目，可执行。</p>
-<p>比较预估番茄数和实际所用番茄数。</p>
-<p>每一步都即时反馈。</p>
-<ul>
-<li>没想到一件事越做越复杂</li>
-</ul>
-<p>主线任务引出的支线任务可以填入计划外紧急栏。</p>
-<ul>
-<li>头脑被各种想法占据</li>
-</ul>
-<p>抛开所有杂念。</p>
-<ul>
-<li>时间都用来学习适应复杂的工作方法了</li>
-</ul>
-<p>番茄工作法简单易行。</p>
-<ul>
-<li>只顾低头干活，忘了抬头看路</li>
-</ul>
-<p>每半个小时休息一下。</p>
-<ul>
-<li>把预估当作承诺</li>
-</ul>
-<p>预估不会特别准确，不要把估计值当作承诺，不必焦虑。</p>
-<ul>
-<li>流程管理，纸上谈兵</li>
-</ul>
-<p>跟踪中断数，完成番茄数。</p>
-<ul>
-<li>牵着不走，打着倒退</li>
-</ul>
-<p>将事情变成我选择去做，积极主动，不要有被迫感。</p>
-<ul>
-<li>完美主义，碍手碍脚</li>
-</ul>
-<p>“等等，还有更完美的方案”是另一种形式的拖延。</p>
-<p>开启一个番茄钟，专注起来。</p>
-<ul>
-<li>前怕狼，后怕虎</li>
-</ul>
-<p>让番茄钟成为前进的进程指标，让工作有章可循。</p>
-<p>为平凡增添乐趣。</p>
-<p>总之，借用《奇特的一生》的话，锻炼感知时间的能力。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/04/番茄工作法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
