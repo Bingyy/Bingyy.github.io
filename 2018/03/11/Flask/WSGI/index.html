@@ -100,16 +100,28 @@
 
 
   
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Flask," />
 
 
+<meta name="description" content="需要明白的是，Flask应用对象是WSGI应用程序的实例。
+WSGI全称是Python Web Server Gateway Interface，是为Python语言定义的Web服务器与Web应用程序或框架之间的一种接口，简单且通用。
+WSGI开发出来后，其他语言也出现了类似的接口。
+WSGI出现以前，如何选择合适的Web应用程序框架是很让人困惑的，因为一旦选择了框架就会限制Web服务器的选择。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WSGI">
 <meta property="og:url" content="http://yoursite.com/2018/03/11/Flask/WSGI/index.html">
 <meta property="og:site_name" content="Bing's Home">
-<meta property="og:updated_time" content="2018-03-11T06:43:05.808Z">
+<meta property="og:description" content="需要明白的是，Flask应用对象是WSGI应用程序的实例。
+WSGI全称是Python Web Server Gateway Interface，是为Python语言定义的Web服务器与Web应用程序或框架之间的一种接口，简单且通用。
+WSGI开发出来后，其他语言也出现了类似的接口。
+WSGI出现以前，如何选择合适的Web应用程序框架是很让人困惑的，因为一旦选择了框架就会限制Web服务器的选择。">
+<meta property="og:updated_time" content="2018-03-12T01:54:59.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WSGI">
+<meta name="twitter:description" content="需要明白的是，Flask应用对象是WSGI应用程序的实例。
+WSGI全称是Python Web Server Gateway Interface，是为Python语言定义的Web服务器与Web应用程序或框架之间的一种接口，简单且通用。
+WSGI开发出来后，其他语言也出现了类似的接口。
+WSGI出现以前，如何选择合适的Web应用程序框架是很让人困惑的，因为一旦选择了框架就会限制Web服务器的选择。">
 
 
 
@@ -358,6 +370,24 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Flask/" itemprop="url" rel="index"><span itemprop="name">Flask</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -385,7 +415,30 @@
       
 
       
-        
+        <p>需要明白的是，Flask应用对象是WSGI应用程序的实例。</p>
+<p>WSGI全称是Python Web Server Gateway Interface，是为Python语言定义的<strong>Web服务器</strong>与<strong>Web应用程序</strong>或<strong>框架</strong>之间的一种接口，简单且通用。</p>
+<p>WSGI开发出来后，其他语言也出现了类似的接口。</p>
+<p>WSGI出现以前，如何选择合适的Web应用程序框架是很让人困惑的，因为一旦选择了框架就会限制Web服务器的选择。</p>
+<p>WSGI是作为Web服务器与Web应用程序或应用框架之间的一种低级别的接口。是基于现存的CGI标准而设计的。</p>
+<h3 id="WSGI规范一览"><a href="#WSGI规范一览" class="headerlink" title="WSGI规范一览"></a>WSGI规范一览</h3><p>包含两个部分：</p>
+<ul>
+<li>服务器/网关</li>
+<li>应用程序/应用框架</li>
+</ul>
+<p>既然是中间层，自然要对接这两个部分。</p>
+<p>处理一个WSGI请求时，服务器会为应用程序提供环境信息以及一个回调函数。应用程序完成处理请求后，通过回调函数将结果返回给服务器。</p>
+<p>从应用程序角度，WSGI扮演服务器，执行以下功能：</p>
+<ul>
+<li>重写环境变量，根据目标URL，将请求消息<strong>路由</strong>到不同应用对象</li>
+<li>允许在一个进程中同时运行多个应用程序or应用框架</li>
+<li>负载均衡和远程处理，通过网络转发请求和响应信息</li>
+<li>进行内容后处理</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">app</span><span class="params">(environ, start_response)</span>:</span></div><div class="line">    start_response(<span class="string">'200 OK'</span>, [(<span class="string">'Content-Type'</span>, <span class="string">'text/plain'</span>)])</div><div class="line">    <span class="keyword">yield</span> <span class="string">'Hello World!\n'</span></div></pre></td></tr></table></figure>
+<p>app: callable<br>environ: 包含CGI中的环境变量的字典<br>start_response: callable</p>
+<p>调用一个应用程序的示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">call_application</span><span class="params">(app, environ)</span>:</span></div><div class="line">    body = []</div><div class="line">    status_headers = [<span class="keyword">None</span>,<span class="keyword">None</span>]</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_response</span><span class="params">(status,headers)</span>:</span></div><div class="line">        status_headers[:] = [status, headers]</div><div class="line">    app_iter = app(environ, start_response)</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> app_iter:</div><div class="line">            body.append(item)</div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">        <span class="keyword">if</span> hasattr(app_iter, <span class="string">'close'</span>):</div><div class="line">            app_iter.close()</div><div class="line">    <span class="keyword">return</span> status_headers[<span class="number">0</span>], status_headers[<span class="number">1</span>], <span class="string">''</span>.join(body)</div><div class="line"></div><div class="line">status, headers, body = call_application(app, &#123;...environ...&#125;)</div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -399,6 +452,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flask/" rel="tag"># Flask</a>
+          
+        </div>
       
 
       
@@ -471,8 +530,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -539,7 +607,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -565,6 +635,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#WSGI规范一览"><span class="nav-number">1.</span> <span class="nav-text">WSGI规范一览</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
