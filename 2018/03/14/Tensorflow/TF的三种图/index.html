@@ -108,9 +108,7 @@
 
 tf.train.Saver() / saver.restore()
 export_meta_graph / import_meta_graph
-tf.train.write_graph() / tf.import_graph_def()
-
-Graph vs. Graph_defGraph是一些操作（Operation）和张量（Ten">
+tf.train.write_graph() / tf.import_graph_def()">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TF的三种图">
 <meta property="og:url" content="http://yoursite.com/2018/03/14/Tensorflow/TF的三种图/index.html">
@@ -120,10 +118,8 @@ Graph vs. Graph_defGraph是一些操作（Operation）和张量（Ten">
 
 tf.train.Saver() / saver.restore()
 export_meta_graph / import_meta_graph
-tf.train.write_graph() / tf.import_graph_def()
-
-Graph vs. Graph_defGraph是一些操作（Operation）和张量（Ten">
-<meta property="og:updated_time" content="2018-03-14T02:23:48.853Z">
+tf.train.write_graph() / tf.import_graph_def()">
+<meta property="og:updated_time" content="2018-03-14T02:31:32.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TF的三种图">
 <meta name="twitter:description" content="TF的三种图@(Tensorflow)
@@ -131,9 +127,7 @@ Graph vs. Graph_defGraph是一些操作（Operation）和张量（Ten">
 
 tf.train.Saver() / saver.restore()
 export_meta_graph / import_meta_graph
-tf.train.write_graph() / tf.import_graph_def()
-
-Graph vs. Graph_defGraph是一些操作（Operation）和张量（Ten">
+tf.train.write_graph() / tf.import_graph_def()">
 
 
 
@@ -434,6 +428,7 @@ Graph vs. Graph_defGraph是一些操作（Operation）和张量（Ten">
 <li><code>export_meta_graph / import_meta_graph</code></li>
 <li><code>tf.train.write_graph() / tf.import_graph_def()</code></li>
 </ul>
+<a id="more"></a>
 <h3 id="Graph-vs-Graph-def"><a href="#Graph-vs-Graph-def" class="headerlink" title="Graph vs. Graph_def"></a>Graph vs. Graph_def</h3><p>Graph是一些操作（Operation）和张量（Tensor）集合。</p>
 <p>图表示了比如Python代码所表达的计算的对应关系，真实的TF运行过程中，图不是一层不变的东西，因为真实的计算会被下放到多个CPU, GPU等异构设备上。所以TF会将Python代码描绘的图转成（序列化）为<code>Protocol Buffer</code>，再通过C/C++/CUDA运行<code>Protocol Buffer</code>定义的图。</p>
 <p>其中，关于<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-gpb/" target="_blank" rel="external"><code>Protocol Buffer</code></a>，是一种更轻便高效的结构化数据存储的格式，用于结构化数据串行化，即：序列化。</p>
