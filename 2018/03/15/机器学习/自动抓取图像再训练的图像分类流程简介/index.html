@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.3" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'IUQCSEDJ79',
+      apiKey: '60f76ada8b68653e2a6d58c1ea890892',
+      indexName: 'dev_hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Hello World!" />
+
+
+<meta name="description" content="自动抓取图像再训练的图像分类流程简介@(Computer Vision)
+整体流程通过给定新的图片类别class_name,调用：
+proxychains4 googleimagesdownload -k classname -l 100">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动抓取图像再训练的图像分类流程简介">
+<meta property="og:url" content="http://yoursite.com/2018/03/15/机器学习/自动抓取图像再训练的图像分类流程简介/index.html">
+<meta property="og:site_name" content="Bing's Home">
+<meta property="og:description" content="自动抓取图像再训练的图像分类流程简介@(Computer Vision)
+整体流程通过给定新的图片类别class_name,调用：
+proxychains4 googleimagesdownload -k classname -l 100">
+<meta property="og:image" content="http://yoursite.com/./output.png">
+<meta property="og:updated_time" content="2018-03-15T14:37:01.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自动抓取图像再训练的图像分类流程简介">
+<meta name="twitter:description" content="自动抓取图像再训练的图像分类流程简介@(Computer Vision)
+整体流程通过给定新的图片类别class_name,调用：
+proxychains4 googleimagesdownload -k classname -l 100">
+<meta name="twitter:image" content="http://yoursite.com/./output.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/15/机器学习/自动抓取图像再训练的图像分类流程简介/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>自动抓取图像再训练的图像分类流程简介 | Bing's Home</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bing's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coder,区块链，机器学习。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cv">
+          <a href="/categories/CV" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />CV</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/机器学习/自动抓取图像再训练的图像分类流程简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自动抓取图像再训练的图像分类流程简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T22:36:26+08:00">2018-03-15</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机视觉/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="自动抓取图像再训练的图像分类流程简介"><a href="#自动抓取图像再训练的图像分类流程简介" class="headerlink" title="自动抓取图像再训练的图像分类流程简介"></a>自动抓取图像再训练的图像分类流程简介</h2><p>@(Computer Vision)</p>
+<h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><p>通过给定新的图片类别<code>class_name</code>,调用：</p>
+<p><code>proxychains4 googleimagesdownload -k classname -l 100</code></p>
+<a id="more"></a>
+<p>下载图片，然后调用脚本清洗一下图片的命名，删除错误的图片，有些图片抓下来不是图片，或者是无法解析的图片。</p>
+<p>处理完后，是在当前执行位置下新建了一个<code>downloads</code>文件夹，文件夹下是按照类命名的子文件夹，存储的五花八门的图片的名字。</p>
+<p>上面清洗完后，将其挪到<code>training_dataset</code>文件夹下，执行：<code>bash train.sh</code>开始构建标准的数据格式，然后训练就开始了。</p>
+<p>其中，<code>train.sh</code>脚本内容很简单：</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 此脚本是在训练数据准备好的情况下运行</div><div class="line">python retrain.py \</div><div class="line">  -<span class="ruby">-bottleneck_dir=tf_files/bottlenecks \</span></div><div class="line">  -<span class="ruby">-how_many_training_steps=<span class="number">500</span> \</span></div><div class="line">  -<span class="ruby">-model_dir=inception \</span></div><div class="line">  -<span class="ruby">-summaries_dir=tf_files/training_summaries/basic \</span></div><div class="line">  -<span class="ruby">-output_graph=tf_files/retrained_graph.pb \</span></div><div class="line">  -<span class="ruby">-output_labels=tf_files/retrained_labels.txt \</span></div><div class="line">  -<span class="ruby">-image_dir=training_dataset <span class="comment"># 新的标签数据集</span></span></div></pre></td></tr></table></figure>
+<p>这在之前写过过程，然后，紧接着，执行预测脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="comment"># dir:待处理的文件夹名</span></div><div class="line">dir=<span class="string">"./video/frames"</span></div><div class="line"><span class="keyword">for</span> f <span class="keyword">in</span> <span class="string">"<span class="variable">$dir</span>"</span>/*; <span class="keyword">do</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$f</span>"</span></div><div class="line">  <span class="comment"># 调用Python脚本</span></div><div class="line">  python classify.py <span class="string">"<span class="variable">$f</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<p>逐个调用该目录下的文件，对其进行处理。</p>
+<p>我更改了<code>classify.py</code>的部分代码，使其能够把模型的预测结果合上来。</p>
+<p>效果如下：</p>
+<p><img src="./output.png" alt="Alt text"></p>
+<p><code>classify.py</code>代码也丢上来，不是很长：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> cv2</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># speicherorte fuer trainierten graph und labels in train.sh festlegen ##</span></div><div class="line"></div><div class="line"><span class="comment"># Disable tensorflow compilation warnings</span></div><div class="line">os.environ[<span class="string">'TF_CPP_MIN_LOG_LEVEL'</span>]=<span class="string">'2'</span></div><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"></div><div class="line"><span class="comment"># 从命令行读取内容</span></div><div class="line">image_path = sys.argv[<span class="number">1</span>]</div><div class="line">infer_res_list = []</div><div class="line"><span class="comment"># angabe in console als argument nach dem aufruf  </span></div><div class="line"></div><div class="line"><span class="comment">#bilddatei readen</span></div><div class="line">image_data = tf.gfile.FastGFile(image_path, <span class="string">'rb'</span>).read()</div><div class="line"></div><div class="line"><span class="comment"># holt labels aus file in array </span></div><div class="line">label_lines = [line.rstrip() <span class="keyword">for</span> line </div><div class="line">                   <span class="keyword">in</span> tf.gfile.GFile(<span class="string">"tf_files/retrained_labels.txt"</span>)]</div><div class="line"><span class="comment"># !! labels befinden sich jeweils in eigenen lines -&gt; keine aenderung in retrain.py noetig -&gt; falsche darstellung im windows editor !!</span></div><div class="line">                   </div><div class="line"><span class="comment"># graph einlesen, wurde in train.sh -&gt; call retrain.py trainiert</span></div><div class="line"></div><div class="line"><span class="comment"># 调用train.sh进行训练，生成模型并保存，这里读取模型参数</span></div><div class="line"><span class="keyword">with</span> tf.gfile.FastGFile(<span class="string">"tf_files/retrained_graph.pb"</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</div><div class="line">    graph_def = tf.GraphDef()   <span class="comment">## The graph-graph_def is a saved copy of a TensorFlow graph; objektinitialisierung</span></div><div class="line">    graph_def.ParseFromString(f.read()) <span class="comment">#Parse serialized protocol buffer data into variable</span></div><div class="line">    _ = tf.import_graph_def(graph_def, name=<span class="string">''</span>) <span class="comment"># import a serialized TensorFlow GraphDef protocol buffer, extract objects in the GraphDef as tf.Tensor</span></div><div class="line">    </div><div class="line">    <span class="comment">#https://github.com/Hvass-Labs/TensorFlow-Tutorials/blob/master/inception.py ; ab zeile 276</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_inference_on_image</span><span class="params">(image_data)</span>:</span></div><div class="line">    <span class="comment"># 运行</span></div><div class="line">    <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line"></div><div class="line">        <span class="comment"># 拿到要计算的Tensor</span></div><div class="line">        softmax_tensor = sess.graph.get_tensor_by_name(<span class="string">'final_result:0'</span>)</div><div class="line">        <span class="comment"># return: Tensor("final_result:0", shape=(?, 4), dtype=float32); stringname definiert in retrain.py, zeile 1064 </span></div><div class="line">        <span class="comment"># 预测</span></div><div class="line">        predictions = sess.run(softmax_tensor, \</div><div class="line">                 &#123;<span class="string">'DecodeJpeg/contents:0'</span>: image_data&#125;)</div><div class="line">        <span class="comment"># gibt prediction values in array zuerueck:</span></div><div class="line">        <span class="comment"># 得到Top-5的预测</span></div><div class="line">        top_k = predictions[<span class="number">0</span>].argsort()[-len(predictions[<span class="number">0</span>]):][::<span class="number">-1</span>]</div><div class="line">        <span class="comment"># sortierung; circle -&gt; 0, plus -&gt; 1, square -&gt; 2, triangle -&gt; 3; array return bsp [3 1 2 0] -&gt; sortiert nach groesster uebereinstimmmung</span></div><div class="line">        <span class="comment"># 输出值，</span></div><div class="line">        <span class="comment"># output</span></div><div class="line">        <span class="keyword">for</span> node_id <span class="keyword">in</span> top_k:</div><div class="line">            human_string = label_lines[node_id]</div><div class="line">            score = round(predictions[<span class="number">0</span>][node_id],<span class="number">4</span>)</div><div class="line">            print(<span class="string">'%s (score = %.4f)'</span> % (human_string, score)) <span class="comment"># 四位有效位</span></div><div class="line">            infer_res_list.append(human_string + <span class="string">': '</span> + str(score)) <span class="comment"># 将五个结果保存起来</span></div><div class="line">    <span class="keyword">return</span> infer_res_list</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="comment"># 执行推断</span></div><div class="line">    infer_res_list = run_inference_on_image(image_data)</div><div class="line">    <span class="comment"># 写图片是在image_path这个原始图像上写，模型返回的是结果</span></div><div class="line">    img = cv2.imread(image_path) <span class="comment"># 默认是彩色图</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">        cv2.putText(img,infer_res_list[i],(<span class="number">660</span>, <span class="number">20</span> + <span class="number">30</span> * i),cv2.FONT_HERSHEY_DUPLEX,<span class="number">0.5</span>,(<span class="number">0</span>,<span class="number">123</span>,<span class="number">255</span>),<span class="number">1</span>)</div><div class="line"></div><div class="line">    name = image_path.split(<span class="string">'/'</span>)[<span class="number">-1</span>].split(<span class="string">'.'</span>)[<span class="number">-2</span>]</div><div class="line"></div><div class="line">    print(<span class="string">'开始保存'</span> + image_path)</div><div class="line"></div><div class="line">    <span class="comment"># 如果不存在此文件夹则不能保存，所以可以先用os判断</span></div><div class="line">    dirname = <span class="string">'res_'</span> + str(date.today())</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dirname):</div><div class="line">        os.mkdir(dirname)</div><div class="line"></div><div class="line">    cv2.imwrite(dirname + <span class="string">'/'</span> + name + <span class="string">'.png'</span>, img)</div><div class="line">    <span class="comment"># cv2.imwrite(os.path.join(dirname, name , '.png'),img)</span></div></pre></td></tr></table></figure></p>
+<p>关于视频拆解与视频合成：</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">import numpy as np</div><div class="line">import cv2</div><div class="line"></div><div class="line"><span class="meta"># cap = cv2.VideoCapture(0)  # 开启摄像头</span></div><div class="line">video_name = <span class="string">'video.mp4'</span></div><div class="line">cap = cv2.VideoCapture(video_name)</div><div class="line">count = <span class="number">0</span> <span class="meta"># 计算帧数</span></div><div class="line"></div><div class="line"><span class="meta"># cap.set(3,640)</span></div><div class="line"><span class="meta"># cap.set(4,480)</span></div><div class="line"></div><div class="line"><span class="meta"># w = cap.get(cv2.CAP_PROP_FRAME_WIDTH)<span class="comment">;</span></span></div><div class="line"><span class="meta"># h = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)<span class="comment">; </span></span></div><div class="line"></div><div class="line"><span class="meta"># fourcc = cv2.VideoWriter_fourcc(*<span class="string">'mp4v'</span>)</span></div><div class="line"><span class="meta"># out = cv2.VideoWriter(<span class="string">'output.mp4'</span>,fourcc, 12.0,(int(w),int(h)))</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="literal">True</span>:</div><div class="line">    ret,frame = cap.read()</div><div class="line">    <span class="meta"># gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY) # 每帧转为灰度图，</span></div><div class="line">    <span class="meta"># if ret == True:</span></div><div class="line">    <span class="meta">#   out.write(frame)</span></div><div class="line">    <span class="meta">#   cv2.imshow(<span class="string">'frame'</span>,frame)</span></div><div class="line">    <span class="meta">#   cv2.imshow(<span class="string">'gray'</span>,gray)</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> ret == <span class="literal">True</span>:</div><div class="line">        cv2.imwrite(<span class="string">'./frames/%04d.png'</span> % count, frame)</div><div class="line">        count += <span class="number">1</span></div><div class="line">    <span class="keyword">if</span> <span class="literal">not</span> ret:</div><div class="line">        <span class="built_in">break</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>): <span class="meta"># &amp; 0xFF是针对64位机器</span></div><div class="line">        <span class="built_in">break</span></div><div class="line"><span class="meta"># cap.release() # 释放摄像头</span></div><div class="line"><span class="meta"># out.release()</span></div><div class="line"><span class="meta"># cv2.destroyAllWindows()</span></div></pre></td></tr></table></figure>
+<p>这个指定完视频文件即可。</p>
+<p>有个细节是，保存图片名称为了顺序合适，用了四位整数的格式。</p>
+<h4 id="视频帧的合成"><a href="#视频帧的合成" class="headerlink" title="视频帧的合成"></a>视频帧的合成</h4><p>调用：<code>python combine_2.py -d dirname</code></p>
+<p>这个代码用了<code>argparse</code>，所以通过指定即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/local/bin/python3</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> cv2</div><div class="line"><span class="keyword">import</span> argparse</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> functools</div><div class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> cmp_to_key</div><div class="line"></div><div class="line"><span class="comment">#Function to check if string can be cast to int</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">isnum</span> <span class="params">(num)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        int(num)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="comment">#Numerically sorts filenames</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">image_sort</span> <span class="params">(x,y)</span>:</span></div><div class="line">    x = int(x.split(<span class="string">"."</span>)[<span class="number">0</span>])</div><div class="line">    y = int(y.split(<span class="string">"."</span>)[<span class="number">0</span>])</div><div class="line">    <span class="keyword">return</span> x-y</div><div class="line"></div><div class="line"><span class="comment"># Construct the argument parser and parse the arguments</span></div><div class="line">arg_parser = argparse.ArgumentParser()</div><div class="line">arg_parser.add_argument(<span class="string">"-e"</span>, <span class="string">"--extension"</span>, required=<span class="keyword">False</span>, default=<span class="string">'png'</span>, help=<span class="string">"Extension name. default is 'png'."</span>)</div><div class="line">arg_parser.add_argument(<span class="string">"-o"</span>, <span class="string">"--output"</span>, required=<span class="keyword">False</span>, default=<span class="string">'output.mp4'</span>, help=<span class="string">"Output video file."</span>)</div><div class="line">arg_parser.add_argument(<span class="string">"-d"</span>, <span class="string">"--directory"</span>, required=<span class="keyword">False</span>, default=<span class="string">'.'</span>, help=<span class="string">"Specify image directory."</span>)</div><div class="line">arg_parser.add_argument(<span class="string">"-fps"</span>, <span class="string">"--framerate"</span>, required=<span class="keyword">False</span>, default=<span class="string">'10'</span>, help=<span class="string">"Set the video framerate."</span>)</div><div class="line">arg_parser.add_argument(<span class="string">"-s"</span>, <span class="string">"--sort"</span>, required=<span class="keyword">False</span>, default=<span class="string">'numeric'</span>, help=<span class="string">"Determines the type of file-order sort that will be used."</span>)</div><div class="line">arg_parser.add_argument(<span class="string">"-t"</span>, <span class="string">"--time"</span>, required=<span class="keyword">False</span>, default=<span class="string">'none'</span>, help=<span class="string">"Sets the framerate so that the video length matches the time in seconds."</span>)</div><div class="line">arg_parser.add_argument(<span class="string">"-v"</span>, <span class="string">"--visual"</span>, required=<span class="keyword">False</span>, default=<span class="string">'false'</span>, help=<span class="string">"If 'true' then will display preview window."</span>)</div><div class="line">args = vars(arg_parser.parse_args())</div><div class="line"></div><div class="line"><span class="comment"># Arguments</span></div><div class="line">dir_path = args[<span class="string">'directory'</span>]</div><div class="line">ext = args[<span class="string">'extension'</span>]</div><div class="line">output = args[<span class="string">'output'</span>]</div><div class="line">framerate = args[<span class="string">'framerate'</span>]</div><div class="line">sort_type = args[<span class="string">'sort'</span>]</div><div class="line">time = args[<span class="string">'time'</span>]</div><div class="line">visual = args[<span class="string">'visual'</span>]</div><div class="line"></div><div class="line"><span class="comment">#Flips 'visual' to a bool</span></div><div class="line">visual = visual == <span class="string">"true"</span></div><div class="line"></div><div class="line"><span class="comment">#Sets the framerate to argument, or defaults to 10</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> isnum(framerate):</div><div class="line">    framerate = <span class="number">10</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    framerate = int(framerate)</div><div class="line"></div><div class="line"><span class="comment">#Get the files from directory</span></div><div class="line">images = []</div><div class="line"><span class="keyword">for</span> f <span class="keyword">in</span> os.listdir(dir_path):</div><div class="line">    <span class="keyword">if</span> f.endswith(ext):</div><div class="line">        images.append(f)</div><div class="line"></div><div class="line"><span class="comment">#Sort the files found in the directory</span></div><div class="line"><span class="keyword">if</span> sort_type == <span class="string">"numeric"</span>:</div><div class="line">    int_name = images[<span class="number">0</span>].split(<span class="string">"."</span>)[<span class="number">0</span>]</div><div class="line">    <span class="keyword">if</span> isnum(int_name):</div><div class="line">        images = sorted(images, key=cmp_to_key(image_sort))</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        print(<span class="string">"Failed to sort numerically, switching to alphabetic sort"</span>)</div><div class="line">        images.sort()</div><div class="line"><span class="keyword">elif</span> sort_type == <span class="string">"alphabetic"</span>:</div><div class="line">    images.sort()</div><div class="line"></div><div class="line"><span class="comment">#Change framerate to fit the time in seconds if a time has been specified.</span></div><div class="line"><span class="comment">#Overrides the -fps arg</span></div><div class="line"><span class="keyword">if</span> isnum(time):</div><div class="line">    framerate = int(len(images) / int(time))</div><div class="line">    print(<span class="string">"Adjusting framerate to "</span> + str(framerate))</div><div class="line"></div><div class="line"><span class="comment"># Determine the width and height from the first image</span></div><div class="line">image_path = os.path.join(dir_path, images[<span class="number">0</span>])</div><div class="line">frame = cv2.imread(image_path)</div><div class="line"></div><div class="line"><span class="keyword">if</span> visual:</div><div class="line">    cv2.imshow(<span class="string">'video'</span>,frame)</div><div class="line">regular_size = os.path.getsize(image_path)</div><div class="line">height, width, channels = frame.shape</div><div class="line"></div><div class="line"><span class="comment"># Define the codec and create VideoWriter object</span></div><div class="line">fourcc = cv2.VideoWriter_fourcc(*<span class="string">'mp4v'</span>) <span class="comment"># Be sure to use lower case</span></div><div class="line">out = cv2.VideoWriter(output, fourcc, framerate, (width, height))</div><div class="line"></div><div class="line"><span class="keyword">for</span> n, image <span class="keyword">in</span> enumerate(images):</div><div class="line">    image_path = os.path.join(dir_path, image)</div><div class="line">    image_size = os.path.getsize(image_path)</div><div class="line">    <span class="keyword">if</span> image_size &lt; regular_size / <span class="number">1.5</span>:</div><div class="line">        print(<span class="string">"Cancelled: "</span> + image)</div><div class="line">        <span class="keyword">continue</span></div><div class="line"></div><div class="line">    frame = cv2.imread(image_path)</div><div class="line">    print(image_path)</div><div class="line">    </div><div class="line">    out.write(frame) <span class="comment"># Write out frame to video</span></div><div class="line">    <span class="keyword">if</span> visual:</div><div class="line">        cv2.imshow(<span class="string">'video'</span>, frame)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span>) == ord(<span class="string">'q'</span>): <span class="comment"># Hit `q` to exit</span></div><div class="line">        <span class="keyword">break</span></div><div class="line">    <span class="keyword">if</span> n%<span class="number">100</span> == <span class="number">0</span>:</div><div class="line">        print(<span class="string">"Frame "</span> + str(n))</div><div class="line"></div><div class="line"><span class="comment"># Release everything if job is finished</span></div><div class="line">out.release()</div><div class="line">cv2.destroyAllWindows()</div><div class="line"></div><div class="line">print(<span class="string">"The output video is &#123;&#125;"</span>.format(output))</div></pre></td></tr></table></figure>
+<p>差不多这样。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/15/机器学习/自动处理图片流程/" rel="next" title="自动处理图片流程">
+                <i class="fa fa-chevron-left"></i> 自动处理图片流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Bing</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自动抓取图像再训练的图像分类流程简介"><span class="nav-number">1.</span> <span class="nav-text">自动抓取图像再训练的图像分类流程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整体流程"><span class="nav-number">1.1.</span> <span class="nav-text">整体流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#视频帧的合成"><span class="nav-number">1.1.1.</span> <span class="nav-text">视频帧的合成</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bing</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.0.3"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
