@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/自动抓取图像再训练的图像分类流程简介/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/24/量化投资/NUMERAI：数据科学家的模型变现之路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -338,7 +338,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/15/自动抓取图像再训练的图像分类流程简介/" itemprop="url">自动抓取图像再训练的图像分类流程简介</a></h1>
+                <a class="post-title-link" href="/2018/03/24/量化投资/NUMERAI：数据科学家的模型变现之路/" itemprop="url">NUMERAI：数据科学家的模型变现之路</a></h1>
         
 
         <div class="post-meta">
@@ -350,7 +350,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T22:36:26+08:00">2018-03-15</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-24T17:18:41+08:00">2018-03-24</time>
             
 
             
@@ -359,24 +359,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机视觉/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -406,16 +388,49 @@
 
       
         
-          <h2 id="自动抓取图像再训练的图像分类流程简介"><a href="#自动抓取图像再训练的图像分类流程简介" class="headerlink" title="自动抓取图像再训练的图像分类流程简介"></a>自动抓取图像再训练的图像分类流程简介</h2><p>@(Computer Vision)</p>
-<h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><p>通过给定新的图片类别<code>class_name</code>,调用：</p>
-<p><code>proxychains4 googleimagesdownload -k classname -l 100</code></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/15/自动抓取图像再训练的图像分类流程简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h3 id="NUMERAI：数据科学家的模型变现之路"><a href="#NUMERAI：数据科学家的模型变现之路" class="headerlink" title="NUMERAI：数据科学家的模型变现之路"></a>NUMERAI：数据科学家的模型变现之路</h3><p>@(Machine Learning)</p>
+<p>昨天和加拿大小哥对接CV物体检测项目之后，闲下来小哥给科普了一个平台<a href="https://numer.ai/" target="_blank" rel="external">NMR</a>。</p>
+<p>是我至今见过的将金融+区块链结合的比较接地气的项目。</p>
+<p>NMR这个代币目前上了两个交易所：B网和Upbit。</p>
+<h3 id="NMR是干嘛的"><a href="#NMR是干嘛的" class="headerlink" title="NMR是干嘛的"></a>NMR是干嘛的</h3><p>简单说就是，NUMER这个公司吧，自己开了个对冲基金，这个对冲基金用什么策略交易呢？这就是它的精明之处，让各位会做模型预测的朋友们群智群策。</p>
+<p><img src="/images/nmr.png" alt="NMR"></p>
+<p>可以看到排在第一的同志，生涯赚了1.8w刀，这是在NMR价格缩水的情况下，NMR价格高时达到过50多刀。通过这个平台赚取到的NMR可以提出去进行交易的。</p>
+<p>而基金是如何运用大家的模型的呢？</p>
+<p>可以通过下载网站提供的数据集：</p>
+<p><img src="/images/download_dataset.png" alt="DataSet"></p>
+<p>数据集中包含的数据如下：</p>
+<p><img src="/images/example.png" alt="Example"></p>
+<p>包含一个示例脚本，有<code>Python</code>和<code>R</code>的两种版本。以及需要用到的数据，给的是<code>csv</code>格式。</p>
+<ul>
+<li><p><code>numerai_training_data.csv</code>用于训练模型。</p>
+</li>
+<li><p><code>numerai_tournament_data.csv</code>用于预测。</p>
+</li>
+</ul>
+<p>这些数据其实是交易数据以及它们提取的一些特征，而这些特征是啥，我们是不知道的，打开可以看到：</p>
+<p><img src="/images/fmt.png" alt="FMT"></p>
+<p>有50个特征，但是具体内容不知。这对于我们建模是足够的了，不必知道具体是啥，样例给的是线性模型，实际上我们可以用机器学习的方式，从这些raw data中自动拟合。</p>
+<p>模型训练完毕后，使用模型在预测数据集上预测，输出一个<code>predictions.csv</code>，再回到网站上把这个文件上传到网站上，会自动评价你的模型的效果。</p>
+<p>然后系统会根据模型的优劣做一个排序。基金会把效果不错的模型进行一个综合平均，做出交易的决策，这种模式就很像三个臭皮匠，但是更强大的是，他们<strong>吸引到世界上最优秀的一群人来为他们打工，他们不要你的模型代码，只要你的模型输出，你也别想通过他们提供的数据来训练完模型自己去交易，因为你不知道数据代表什么含义。</strong>这种就是双盲形式的合作，互相利用，却能实现双赢。</p>
+<p>具体模型怎么写，那就是一个大工程了，这里不再说，下面说一下现在进行的空投活动。</p>
+<h3 id="NMR空投"><a href="#NMR空投" class="headerlink" title="NMR空投"></a>NMR空投</h3><p>具体详情可以参考这个<a href="https://numer.ai/airdrops" target="_blank" rel="external">网页</a>.</p>
+<p>活动规则是达到条件送5个NMR，后面再陆陆续每周送一个，送25周，也就是总共送30个NMR。</p>
+<p>写到这里很尴尬地发现，就在刚刚，新的消息po出来：</p>
+<p><img src="/images/kaggle.png" alt="Kaggle"></p>
+<p>这里和Kaggle的关系是什么呢？</p>
+<p>就是NUMERAI会检查你的Kaggle账号是不是符合要求，主要有：</p>
+<ul>
+<li>个人简单介绍</li>
+<li>2018.3.18之前注册</li>
+<li>提交过一次Kaggle上的比赛</li>
+</ul>
+<p>但是现在这个活动暂时被停止了，不开心，写到一半发现没了。但还是要忍着写完。。。</p>
+<p>总之，不管有没有空投，希望有建模能力的朋友不妨多多NUMERAI的任务，一方面锻炼自己量化交易的能力，另一方面赚取一些代币也很不错。</p>
+<p>另外，有学生邮箱的同学可以注册NUMERAI，可以得到0.5个NMR，当前就是40块钱吧。</p>
+<p>PS. 赚到NMR无法变现的同学，可以找我兑任意代币，BTC, ETH等等等。</p>
+
+          
         
       
     </div>
