@@ -319,6 +319,220 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/07/定制构建基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/07/定制构建基础/" itemprop="url">定制构建基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T17:14:43+08:00">2018-04-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/07/定制构建基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/07/定制构建基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="第二章：基础的构建任务"><a href="#第二章：基础的构建任务" class="headerlink" title="第二章：基础的构建任务"></a>第二章：基础的构建任务</h3><p>@(Android)[Gradle for Android]</p>
+<p>覆盖如下几个话题：</p>
+<ul>
+<li>理解Gradle文件</li>
+<li>开始动手构建tasks</li>
+<li>定制构建脚本</li>
+</ul>
+<h3 id="settings-gradle"><a href="#settings-gradle" class="headerlink" title="settings.gradle"></a><code>settings.gradle</code></h3><p>初始只包含一行：<code>include: app</code></p>
+<p>本文件在初始化时执行，决定了哪些模块参与构建。</p>
+<p><strong>单模块的项目不需要这个文件，但是对于多模块的项目，就需要这个settings文件了</strong>。</p>
+<h3 id="顶层的build-gradle"><a href="#顶层的build-gradle" class="headerlink" title="顶层的build.gradle"></a>顶层的<code>build.gradle</code></h3><p>在这里配置项目中所有模块都应用到的设置。</p>
+<p>默认包含两个块：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">buildscript</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">dependencies</span> &#123;</div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:3.1.0'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">allprojects</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中，<code>buildscript</code>是实际构建配置的地方。</p>
+<blockquote>
+<p> JCenter is a well-known Maven repository.</p>
+</blockquote>
+<h3 id="模块级别的build-gradle"><a href="#模块级别的build-gradle" class="headerlink" title="模块级别的build.gradle"></a>模块级别的<code>build.gradle</code></h3><p>只应用在模块上，但是能够覆盖顶层的<code>build.gradle</code>的设置。</p>
+<p>长下面这个样子：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">apply</span> plugin: <span class="string">'com.android.application'</span> // 声明是安卓程序</div><div class="line"></div><div class="line">android &#123;</div><div class="line">    <span class="attribute">compileSdkVersion</span> <span class="number">27</span> // 编译SDK的版本</div><div class="line"></div><div class="line"></div><div class="line">    defaultConfig &#123;</div><div class="line">        <span class="attribute">applicationId</span> <span class="string">"bingw.me.testdebug"</span></div><div class="line">        minSdkVersion <span class="number">23</span></div><div class="line">        targetSdkVersion <span class="number">27</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line">        testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">    &#125;</div><div class="line">    buildTypes &#123;</div><div class="line">        <span class="section">release</span> &#123;</div><div class="line">            <span class="attribute">minifyEnabled</span> <span class="literal">false</span></div><div class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">    <span class="attribute">implementation</span> fileTree(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</div><div class="line">    implementation <span class="string">'com.android.support:appcompat-v7:27.1.0'</span></div><div class="line">    implementation <span class="string">'com.android.support.constraint:constraint-layout:1.0.2'</span></div><div class="line">    testImplementation <span class="string">'junit:junit:4.12'</span></div><div class="line">    androidTestImplementation <span class="string">'com.android.support.test:runner:1.0.1'</span></div><div class="line">    androidTestImplementation <span class="string">'com.android.support.test.espresso:espresso-core:3.0.1'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>分别解释这三个块的含义。</p>
+<h4 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h4><p>安卓插件由谷歌的安卓工具组编写并维护。</p>
+<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>这是最大的一部分，包含安卓专有的配置。</p>
+<p>必须有的是两个部分：</p>
+<ul>
+<li>compileSdkVersion: 你想用于编译安卓应用的API版本</li>
+<li>buildToolsVersion: 用于编译的构建工具的版本</li>
+</ul>
+<p>但是，我看到我建的项目中的<code>build.gradle</code>文件中不包含这句，但是依然可以正常build，很奇怪的。</p>
+<p>接下来，<code>defaultConfig</code>块配置的是此<code>app</code>的核心性质。</p>
+<p>注意，<strong>此处配置的性质将会覆盖所有在<code>AndroidManifest.xml</code></strong>中设定的相应的条目。</p>
+<p>比如，<code>applicationId</code>会覆盖<code>package</code>,<strong>这真是一个很棒的设定。</strong></p>
+<p>在安卓开发拥抱<code>AS</code>之前，<code>package</code>名要管两件事情：</p>
+<ul>
+<li>作为App的独有的标识</li>
+<li>在R资源类中作为包名</li>
+</ul>
+<p>Gradle使得我们构建不同版本的App简单很多。比如想上架一款免费的，一款收费的，按照上传应用的规定，两个App的标识必须是独有的，用包名作为标识，就不得不修改为两个不同的包名。但是我们知道，源代码的包名和R类必须保持相同的包名。</p>
+<p>所以，这就得改很多东西。我们想，要是能够别让包名充当独有的标识就好了！</p>
+<p>是的，现在有了一个<code>applicaitonId</code>~~</p>
+<p>下面再看两个性质：</p>
+<ul>
+<li><code>minSdkVersion</code></li>
+<li><code>targetSdkVersion</code></li>
+</ul>
+<p>说一下，这两个和上面的<code>compileSdkVersion</code>么有关系~</p>
+<p>再次强调：所有在<code>build.gradle</code>中定义的都会覆盖相应在<code>manifest</code>文件中定义的值。</p>
+<p>欧克欧克，知道谁是老大了。</p>
+<p>关于<code>buildType</code>块要在第四章才深入解读。</p>
+<h4 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h4><p>这是标准的Gradle配置，定义了所有的app或者library的依赖。</p>
+<p>默认情况下，一个新的安卓应用会依赖所有在<code>libs</code>中的<code>jar</code>包。</p>
+<p>取决于项目的设置，可能会依赖<code>AppCompat</code>库，在第三章管理依赖部分，会详细阐述。</p>
+<h3 id="关于tasks的应用"><a href="#关于tasks的应用" class="headerlink" title="关于tasks的应用"></a>关于tasks的应用</h3><p>终端运行：<code>gradlew tasks</code>可列出所有可用的任务。</p>
+<p>包含：</p>
+<ul>
+<li>安卓任务</li>
+<li>构建任务</li>
+<li>构建设置任务</li>
+<li>帮助任务</li>
+<li>安装任务</li>
+</ul>
+<p>如果想看到更详细的，用：<code>gradlew tasks --all</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/03/佛系是不追求成功吗？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1710,164 +1924,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/ADA白皮书笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bing's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/12/ADA白皮书笔记/" itemprop="url">【白皮书阅读】ADA白皮书笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T13:19:24+08:00">2018-03-12</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/区块链/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/12/ADA白皮书笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/12/ADA白皮书笔记/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>ADA提供的白皮书很奇怪，直接上来几篇学术论文，虽然很亲切….</p>
-<p>从官网上，先看一些基础的东西。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/12/ADA白皮书笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1919,7 +1975,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1962,7 +2018,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
