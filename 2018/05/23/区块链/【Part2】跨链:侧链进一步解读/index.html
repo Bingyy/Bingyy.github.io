@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.3" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'IUQCSEDJ79',
+      apiKey: '60f76ada8b68653e2a6d58c1ea890892',
+      indexName: 'dev_hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Hello World!" />
+
+
+<meta name="description" content="【Part2】侧链、跨链的优势与问题@(区块链)
+
+本文仍是阅读《侧链/跨链行业研究报告》的阅读笔记的第二部分。
+
+上一篇我们解读了跨链、侧链这两个概念，本篇将完成下面的子主题：
+
+侧链、跨链的优势与问题
+
+早期的跨链项目主要关注的是资产的转移。而演变到今天，跨链项目开始更多关注链的状态的转移。
+
+侧链服务于主链，跨链志在链之间的价值和功能的连通。
+
+听起来很不同，实则侧链和跨链在技术上是相似的，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="侧链、跨链的优势与问题">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/区块链/【Part2】跨链:侧链进一步解读/index.html">
+<meta property="og:site_name" content="Bing's Home">
+<meta property="og:description" content="【Part2】侧链、跨链的优势与问题@(区块链)
+
+本文仍是阅读《侧链/跨链行业研究报告》的阅读笔记的第二部分。
+
+上一篇我们解读了跨链、侧链这两个概念，本篇将完成下面的子主题：
+
+侧链、跨链的优势与问题
+
+早期的跨链项目主要关注的是资产的转移。而演变到今天，跨链项目开始更多关注链的状态的转移。
+
+侧链服务于主链，跨链志在链之间的价值和功能的连通。
+
+听起来很不同，实则侧链和跨链在技术上是相似的，">
+<meta property="og:updated_time" content="2018-05-29T04:05:53.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="侧链、跨链的优势与问题">
+<meta name="twitter:description" content="【Part2】侧链、跨链的优势与问题@(区块链)
+
+本文仍是阅读《侧链/跨链行业研究报告》的阅读笔记的第二部分。
+
+上一篇我们解读了跨链、侧链这两个概念，本篇将完成下面的子主题：
+
+侧链、跨链的优势与问题
+
+早期的跨链项目主要关注的是资产的转移。而演变到今天，跨链项目开始更多关注链的状态的转移。
+
+侧链服务于主链，跨链志在链之间的价值和功能的连通。
+
+听起来很不同，实则侧链和跨链在技术上是相似的，">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/23/区块链/【Part2】跨链:侧链进一步解读/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>侧链、跨链的优势与问题 | Bing's Home</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bing's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coder,区块链，机器学习。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cv">
+          <a href="/categories/CV" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />CV</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/区块链/【Part2】跨链:侧链进一步解读/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">侧链、跨链的优势与问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T12:05:59+08:00">2018-05-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/区块链/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/23/区块链/【Part2】跨链:侧链进一步解读/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/23/区块链/【Part2】跨链:侧链进一步解读/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="【Part2】侧链、跨链的优势与问题"><a href="#【Part2】侧链、跨链的优势与问题" class="headerlink" title="【Part2】侧链、跨链的优势与问题"></a>【Part2】侧链、跨链的优势与问题</h3><p>@(区块链)</p>
+<blockquote>
+<p>本文仍是阅读《侧链/跨链行业研究报告》的阅读笔记的第二部分。</p>
+</blockquote>
+<p>上一篇我们解读了跨链、侧链这两个概念，本篇将完成下面的子主题：</p>
+<ul>
+<li>侧链、跨链的优势与问题</li>
+</ul>
+<p>早期的跨链项目主要关注的是<strong>资产的转移</strong>。而演变到今天，跨链项目开始更多关注<strong>链的状态的转移</strong>。</p>
+<blockquote>
+<p>侧链服务于主链，跨链志在链之间的价值和功能的连通。</p>
+</blockquote>
+<p>听起来很不同，实则侧链和跨链在技术上是相似的，只有在具体到它们服务的对象时才做细致的区分。</p>
+<p>谈起资产的转移，是比较好理解的，就是多种币之间能够形成兑换，而币是<strong>流通在链上的血液</strong>。<strong>链的状态</strong>又是什么呢？这要结合着链所提供的功能来看，从程序的角度来说，链的状态是名词，是对象的属性，功能是动作，能够改变链的状态。单纯的资产转移要比功能的连通要容易很多，而功能的连通，可以理解为，在一条链上的操作，能够在另一条链上同样响应。</p>
+<h3 id="一、跨链和侧链的优势"><a href="#一、跨链和侧链的优势" class="headerlink" title="一、跨链和侧链的优势"></a>一、跨链和侧链的优势</h3><p>公有链的吞吐量低几乎是当前所有做公链的人立志攻克的难题之首。那有没有想过，为什么低吞吐量是很大的问题呢？</p>
+<p>有个很核心的点在于，低吞吐量，会带来高的手续费。</p>
+<p>这是用户能够亲身感受得到的。高手续费是让用户很不舒服的体验。</p>
+<p>为了解决这个问题，现有的解决方案主要分为三种：</p>
+<ul>
+<li><p>侧链</p>
+</li>
+<li><p>分片</p>
+</li>
+<li><p>DAG: 有向无环图</p>
+</li>
+</ul>
+<p>三种技术的简单对比可以罗列如下。</p>
+<p>1.<strong>侧链</strong></p>
+<p>定义：为了解决比特币拥堵的问题而提出的一种跨链解决方案，可以使得比特币安全地在比特币主链和其他区块链相互转移</p>
+<p>具体来说是：首先明确一点，<strong>侧链是以锚定比特币为基础的新型区块链</strong>。目的是为了提供一种能够在拥有不同规则的其他区块链上转移比特币。简单理解就是，构建一个以比特币为中心的区块链大一统的世界。典型项目有闪电网络，RootStock等。</p>
+<p>2.<strong>分片</strong></p>
+<p>定义：借鉴了传统数据库将大型数据库分成更小、更快、更容易管理的部分。</p>
+<p>具体来说是：将区块链分成若干能够处理交易的较小组件式的网络，从而实现每秒处理数千笔交易的支付系统。典型项目有以太坊，EOS等。</p>
+<p>3.<strong>DAG</strong></p>
+<p>定义：中文说法是有向无环图，是数据结构里的概念。常用于动态规划，导航中寻找最短路径等场景。</p>
+<p>具体来说是：<strong>DAG摒弃了区块的概念</strong>，交易直接进入全网，那自然速度就快很多。<strong>DAG网络中没有矿工这一角色</strong>，交易的确认交给了交易本身。手续费低，非常适合小额高频交易。典型项目有IOTA，DagCoin等。</p>
+<p>这里不仔细展开分片和DAG的具体细节，而专注于侧链。</p>
+<p>侧链的优势主要在以下四个方面：</p>
+<ul>
+<li><p>安全性增强</p>
+</li>
+<li><p>速度更快</p>
+</li>
+<li><p>可以开发智能合约</p>
+</li>
+<li><p>扩展了应用的范围</p>
+</li>
+</ul>
+<p>现在分别展开。</p>
+<h4 id="安全性增强"><a href="#安全性增强" class="headerlink" title="安全性增强"></a>安全性增强</h4><p>虽然在比特币网络上，用户的钱包账户地址并不显式出来你是谁，但是通过其他信息，比如IP地址，以及该钱包账户地址和其他人形成的交易，交叉对比可以侧写出用户画像。所以，比特币网络下，匿名实际上是做不到的。而通过侧链，就可以做到<strong>上帝的归上帝，凯撒的归凯撒</strong>。也就是，小额的交易通过走侧链实现，能够隐蔽拥有大量比特币的主账户地址。</p>
+<h4 id="速度更快"><a href="#速度更快" class="headerlink" title="速度更快"></a>速度更快</h4><p>比特币主网上阻塞的交易，大部分都是小额交易，如果能把这部分交易放到侧链上，将大大加快转账速度，并减轻主网压力。</p>
+<h4 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h4><p>比特币是不支持智能合约的，如果支持的话，V神也不会转而开发以太坊了。当然背后的动机，因为比特币社区的傲慢，这里也不展开。加入侧链后，我们可以在主网锁定一部分比特币价值，功能在侧链实现。想象一下挺好，但是具体会对数字货币社区有多大影响，还要考虑历史进程。</p>
+<h4 id="扩展应用范围"><a href="#扩展应用范围" class="headerlink" title="扩展应用范围"></a>扩展应用范围</h4><p>利用侧链，能够轻松建立各种智能合约。可有成千上万个锚定到比特币的侧链。这些侧链均依赖于一种主链。这样可以使得数字货币在一个统一的框架体系下发展。</p>
+<p>看起来很美好，但是，同样存在一些问题，下面展开。</p>
+<h3 id="二、侧链和跨链目前的问题"><a href="#二、侧链和跨链目前的问题" class="headerlink" title="二、侧链和跨链目前的问题"></a>二、侧链和跨链目前的问题</h3><p>首先便是安全性问题。</p>
+<p>比特币网络从2009年运行到现在，一直在健康运转，证明了它的安全性。而一旦引入侧链，那么整个系统便有很多入口可供选择。黑客只需要攻克最薄弱的侧链，就能破坏整个网络了。</p>
+<p>为了解决侧链攻击问题，有一个办法是<strong>合并挖矿</strong>。合并挖矿要求矿工运行所有侧链的完整结点，这一般矿工是做不到的，需要专业矿工来做，会导致中心化挖矿。虽然，现在的挖矿已经呈现出一定的中心化趋势了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/18/高效成长/超越感觉/" rel="next" title="Beyond feelings A guide to critical thinking">
+                <i class="fa fa-chevron-left"></i> Beyond feelings A guide to critical thinking
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/29/区块链/【译文】NEO vs. ETH/" rel="prev" title="侧链、跨链的优势与问题">
+                侧链、跨链的优势与问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Bing" />
+            
+              <p class="site-author-name" itemprop="name">Bing</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#【Part2】侧链、跨链的优势与问题"><span class="nav-number">1.</span> <span class="nav-text">【Part2】侧链、跨链的优势与问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、跨链和侧链的优势"><span class="nav-number">2.</span> <span class="nav-text">一、跨链和侧链的优势</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安全性增强"><span class="nav-number">2.1.</span> <span class="nav-text">安全性增强</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#速度更快"><span class="nav-number">2.2.</span> <span class="nav-text">速度更快</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#智能合约"><span class="nav-number">2.3.</span> <span class="nav-text">智能合约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展应用范围"><span class="nav-number">2.4.</span> <span class="nav-text">扩展应用范围</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、侧链和跨链目前的问题"><span class="nav-number">3.</span> <span class="nav-text">二、侧链和跨链目前的问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bing</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.3</div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/05/23/区块链/【Part2】跨链:侧链进一步解读/';
+        this.page.identifier = '2018/05/23/区块链/【Part2】跨链:侧链进一步解读/';
+        this.page.title = '侧链、跨链的优势与问题';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.0.3"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  
+</body>
+</html>

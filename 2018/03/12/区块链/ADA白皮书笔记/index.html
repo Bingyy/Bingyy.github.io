@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.3" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'IUQCSEDJ79',
+      apiKey: '60f76ada8b68653e2a6d58c1ea890892',
+      indexName: 'dev_hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Hello World!" />
+
+
+<meta name="description" content="ADA提供的白皮书很奇怪，直接上来几篇学术论文，虽然很亲切….
+从官网上，先看一些基础的东西。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【白皮书阅读】ADA白皮书笔记">
+<meta property="og:url" content="http://yoursite.com/2018/03/12/区块链/ADA白皮书笔记/index.html">
+<meta property="og:site_name" content="Bing's Home">
+<meta property="og:description" content="ADA提供的白皮书很奇怪，直接上来几篇学术论文，虽然很亲切….
+从官网上，先看一些基础的东西。">
+<meta property="og:updated_time" content="2018-03-12T11:46:25.597Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【白皮书阅读】ADA白皮书笔记">
+<meta name="twitter:description" content="ADA提供的白皮书很奇怪，直接上来几篇学术论文，虽然很亲切….
+从官网上，先看一些基础的东西。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/12/区块链/ADA白皮书笔记/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>【白皮书阅读】ADA白皮书笔记 | Bing's Home</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bing's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coder,区块链，机器学习。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cv">
+          <a href="/categories/CV" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />CV</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/区块链/ADA白皮书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【白皮书阅读】ADA白皮书笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T13:19:24+08:00">2018-03-12</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/区块链/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/12/区块链/ADA白皮书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/12/区块链/ADA白皮书笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ADA提供的白皮书很奇怪，直接上来几篇学术论文，虽然很亲切….</p>
+<p>从官网上，先看一些基础的东西。</p>
+<a id="more"></a>
+<h3 id="Cardano是什么"><a href="#Cardano是什么" class="headerlink" title="Cardano是什么"></a>Cardano是什么</h3><p>Ada是代币的名称，实际归宿是Cardano。用途：发送、接收数字资金。</p>
+<p>Cardano提供的是一个技术平台，能够运行金融程序，可以在上面构建DApp。</p>
+<p>创新点是：架接用户和监管之间的平衡。</p>
+<p>愿景：为所有人提供公平的金融服务。</p>
+<h3 id="Cardano的哲学"><a href="#Cardano的哲学" class="headerlink" title="Cardano的哲学"></a>Cardano的哲学</h3><p>很少在区块链项目上看到这种赤裸裸的表述自己哲学的。</p>
+<p>Cardano在2015年开始立项，目的是为了改变加密数字货币的设计与发展。</p>
+<p>Cardano没有告知大家易于理解的发展路线，也没有权威的白皮书，但是有一些设计的原则，最佳的工程实践以及探索的渠道。</p>
+<p>PS. 怎么很像没找程序员，就找了一堆哲学家画了饼的感觉？</p>
+<p>主要包含以下几条：</p>
+<ul>
+<li>将会计和计算分为不同层次</li>
+<li>在高度模块化的功能代码中实现核心组件</li>
+<li>小组学者和开发人员与同行评审研究进行竞争</li>
+<li>大量使用跨学科团队，包括早期使用InfoSec专家</li>
+<li>迅速的迭代发生于白皮书，实施和需要通过审查期间发现问题进而更正的新颖研究</li>
+<li>建立具有在不破坏网络环境下进行升级部署后系统的能力</li>
+<li>制定未来运作所需的分散资金机制</li>
+<li>通过长期观点改进加密货币的设计，以便它们在移动设备上运行时，具有合理和安全的用户体验</li>
+<li>让利益相关者更加接近他们所拥有的加密货币之运营和维护</li>
+<li>承认需要对同一个分类帐中的多项资产负责</li>
+<li>交易包括可选元数据，以更佳符合传统系统的需求</li>
+<li>通过从将近1000种的山寨币中学习，含括其有意义的功能</li>
+<li>采用由互联网工程任务组启发的标准驱动流程，使用专门的基础来锁定最终的协议设计</li>
+<li>探索商业的社会元素</li>
+<li>为监管机构寻找一个健康的中间环节，与商业活动进行互动，并且不会影响从比特币继承的一些核心原则</li>
+</ul>
+<p>这些都是从官网上摘下来的，看起来像是自动翻译的结果，很奇怪。</p>
+<p>我的翻译如下：</p>
+<ul>
+<li>会计与计算在不同层执行</li>
+<li>核心组件高度模块化 – 讲的是代码实现</li>
+<li>学者和开发人员小组之间进行同侪竞争研究</li>
+<li>团队成员大多数是跨学科人员，包含早期的InfoSec（信息安全）专家</li>
+<li>白皮书、代码实现以及研究等快速迭代，纠正评审时发现的错误</li>
+<li>部署后的系统能够在不破坏原有系统的基础上进行更新升级 – 热更新</li>
+<li>去中心化的分散资金机制用以支撑后续发展</li>
+<li>让持币者更多参与系统的运营与维护</li>
+<li>认同在同一账本中会计计算不同资产的重要性 – 除Ada币之外，还会有其他代币等资产要进行会计结算</li>
+<li>进一步抽象交易事务使其能够包含元数据以更好适应遗留系统</li>
+<li>从1000多种山寨币中学习经验，去粗取精</li>
+<li>从互联网发展过程中吸取经验：使用由标准驱动的流程，最后由专门的基金会来确定最终的协议</li>
+<li>探索商业中的社会元素</li>
+<li>在不损害从比特币系统中继承来的一些核心原则的前提下，找到一个健康的中间环节，平衡监管者与商业实践</li>
+</ul>
+<p>这些都好虚，不够实际。</p>
+<p>下面进入实际的部分。</p>
+<h3 id="Ouroboros-A-Provably-Secure-Proos-of-Stake-Blockchain-Protocol"><a href="#Ouroboros-A-Provably-Secure-Proos-of-Stake-Blockchain-Protocol" class="headerlink" title="Ouroboros: A Provably Secure Proos-of-Stake Blockchain Protocol"></a>Ouroboros: A Provably Secure Proos-of-Stake Blockchain Protocol</h3><p>网页：<a href="https://www.cardano.org/en/ouroboros/" target="_blank" rel="external">https://www.cardano.org/en/ouroboros/</a></p>
+<h4 id="比特币系统"><a href="#比特币系统" class="headerlink" title="比特币系统"></a>比特币系统</h4><p>伟大的解决方案，但是存在哪些问题？</p>
+<p>比特币系统尝试解决的问题是健壮的公开记账本：一致性与存活性。</p>
+<p>现在我们需要思考：这种协议是不是最好的设计？能否满足我们的目标需求？</p>
+<p>参考论文：<br>《The Bitcoin Backbone Protocol:Analysis and Applications》</p>
+<h4 id="设计协议面对的挑战"><a href="#设计协议面对的挑战" class="headerlink" title="设计协议面对的挑战"></a>设计协议面对的挑战</h4><p>VISA: ~2000tps<br>PayPal: ~100tps<br>Bitcoin: ~7-8tps</p>
+<p>比特币系统效率最低，且耗能最大。</p>
+<p>这是PoW系统的一个弊端，那么采用PoS系统呢？</p>
+<p>将通过类似选举的方式诞生下一个区块。</p>
+<h4 id="PoS"><a href="#PoS" class="headerlink" title="PoS"></a>PoS</h4><ul>
+<li>使用Stake代替哈希算力。</li>
+<li>定义一个矿工集合，包含账本上的所有利益（如代币）持有人</li>
+<li>使用一个随机过程选择矿工</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/电影评论/ShapeOfWater/" rel="next" title="水形物语">
+                <i class="fa fa-chevron-left"></i> 水形物语
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/12/机器学习/Inception的理解/" rel="prev" title="Inception的理解">
+                Inception的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Bing" />
+            
+              <p class="site-author-name" itemprop="name">Bing</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cardano是什么"><span class="nav-number">1.</span> <span class="nav-text">Cardano是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cardano的哲学"><span class="nav-number">2.</span> <span class="nav-text">Cardano的哲学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ouroboros-A-Provably-Secure-Proos-of-Stake-Blockchain-Protocol"><span class="nav-number">3.</span> <span class="nav-text">Ouroboros: A Provably Secure Proos-of-Stake Blockchain Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#比特币系统"><span class="nav-number">3.1.</span> <span class="nav-text">比特币系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计协议面对的挑战"><span class="nav-number">3.2.</span> <span class="nav-text">设计协议面对的挑战</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PoS"><span class="nav-number">3.3.</span> <span class="nav-text">PoS</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bing</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.3</div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/03/12/区块链/ADA白皮书笔记/';
+        this.page.identifier = '2018/03/12/区块链/ADA白皮书笔记/';
+        this.page.title = '【白皮书阅读】ADA白皮书笔记';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.0.3"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  
+</body>
+</html>
