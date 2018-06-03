@@ -103,31 +103,17 @@
   <meta name="keywords" content="Hello World!" />
 
 
-<meta name="description" content="第二章：基础的构建任务@(Android)[Gradle for Android]
-覆盖如下几个话题：
-
-理解Gradle文件
-开始动手构建tasks
-定制构建脚本">
+<meta name="description" content="第二章：基础的构建任务@(Android)[Gradle for Android] 覆盖如下几个话题：  理解Gradle文件 开始动手构建tasks 定制构建脚本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="定制构建基础">
 <meta property="og:url" content="http://yoursite.com/2018/04/07/安卓开发/定制构建基础/index.html">
-<meta property="og:site_name" content="Bing's Home">
-<meta property="og:description" content="第二章：基础的构建任务@(Android)[Gradle for Android]
-覆盖如下几个话题：
-
-理解Gradle文件
-开始动手构建tasks
-定制构建脚本">
+<meta property="og:site_name" content="Bing&#39;s Home">
+<meta property="og:description" content="第二章：基础的构建任务@(Android)[Gradle for Android] 覆盖如下几个话题：  理解Gradle文件 开始动手构建tasks 定制构建脚本">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-07T14:57:54.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="定制构建基础">
-<meta name="twitter:description" content="第二章：基础的构建任务@(Android)[Gradle for Android]
-覆盖如下几个话题：
-
-理解Gradle文件
-开始动手构建tasks
-定制构建脚本">
+<meta name="twitter:description" content="第二章：基础的构建任务@(Android)[Gradle for Android] 覆盖如下几个话题：  理解Gradle文件 开始动手构建tasks 定制构建脚本">
 
 
 
@@ -447,14 +433,14 @@
 <p><strong>单模块的项目不需要这个文件，但是对于多模块的项目，就需要这个settings文件了</strong>。</p>
 <h3 id="顶层的build-gradle"><a href="#顶层的build-gradle" class="headerlink" title="顶层的build.gradle"></a>顶层的<code>build.gradle</code></h3><p>在这里配置项目中所有模块都应用到的设置。</p>
 <p>默认包含两个块：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">buildscript</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">dependencies</span> &#123;</div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:3.1.0'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">allprojects</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:3.1.0'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">allprojects</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中，<code>buildscript</code>是实际构建配置的地方。</p>
 <blockquote>
 <p> JCenter is a well-known Maven repository.</p>
 </blockquote>
 <h3 id="模块级别的build-gradle"><a href="#模块级别的build-gradle" class="headerlink" title="模块级别的build.gradle"></a>模块级别的<code>build.gradle</code></h3><p>只应用在模块上，但是能够覆盖顶层的<code>build.gradle</code>的设置。</p>
 <p>长下面这个样子：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">apply</span> plugin: <span class="string">'com.android.application'</span> // 声明是安卓程序</div><div class="line"></div><div class="line">android &#123;</div><div class="line">    <span class="attribute">compileSdkVersion</span> <span class="number">27</span> // 编译SDK的版本</div><div class="line"></div><div class="line"></div><div class="line">    defaultConfig &#123;</div><div class="line">        <span class="attribute">applicationId</span> <span class="string">"bingw.me.testdebug"</span></div><div class="line">        minSdkVersion <span class="number">23</span></div><div class="line">        targetSdkVersion <span class="number">27</span></div><div class="line">        versionCode <span class="number">1</span></div><div class="line">        versionName <span class="string">"1.0"</span></div><div class="line">        testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">    &#125;</div><div class="line">    buildTypes &#123;</div><div class="line">        <span class="section">release</span> &#123;</div><div class="line">            <span class="attribute">minifyEnabled</span> <span class="literal">false</span></div><div class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">    <span class="attribute">implementation</span> fileTree(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</div><div class="line">    implementation <span class="string">'com.android.support:appcompat-v7:27.1.0'</span></div><div class="line">    implementation <span class="string">'com.android.support.constraint:constraint-layout:1.0.2'</span></div><div class="line">    testImplementation <span class="string">'junit:junit:4.12'</span></div><div class="line">    androidTestImplementation <span class="string">'com.android.support.test:runner:1.0.1'</span></div><div class="line">    androidTestImplementation <span class="string">'com.android.support.test.espresso:espresso-core:3.0.1'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apply</span> plugin: <span class="string">'com.android.application'</span> // 声明是安卓程序</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    <span class="attribute">compileSdkVersion</span> <span class="number">27</span> // 编译SDK的版本</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        <span class="attribute">applicationId</span> <span class="string">"bingw.me.testdebug"</span></span><br><span class="line">        minSdkVersion <span class="number">23</span></span><br><span class="line">        targetSdkVersion <span class="number">27</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">"1.0"</span></span><br><span class="line">        testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></span><br><span class="line">    &#125;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        <span class="section">release</span> &#123;</span><br><span class="line">            <span class="attribute">minifyEnabled</span> <span class="literal">false</span></span><br><span class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="attribute">implementation</span> fileTree(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span><br><span class="line">    implementation <span class="string">'com.android.support:appcompat-v7:27.1.0'</span></span><br><span class="line">    implementation <span class="string">'com.android.support.constraint:constraint-layout:1.0.2'</span></span><br><span class="line">    testImplementation <span class="string">'junit:junit:4.12'</span></span><br><span class="line">    androidTestImplementation <span class="string">'com.android.support.test:runner:1.0.1'</span></span><br><span class="line">    androidTestImplementation <span class="string">'com.android.support.test.espresso:espresso-core:3.0.1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>分别解释这三个块的含义。</p>
 <h4 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h4><p>安卓插件由谷歌的安卓工具组编写并维护。</p>
 <h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>这是最大的一部分，包含安卓专有的配置。</p>
@@ -622,7 +608,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -667,9 +653,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -690,7 +674,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>

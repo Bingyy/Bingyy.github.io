@@ -103,31 +103,17 @@
   <meta name="keywords" content="Hello World!" />
 
 
-<meta name="description" content="TF的三种图@(Tensorflow)
-三对关于图的API:
-
-tf.train.Saver() / saver.restore()
-export_meta_graph / import_meta_graph
-tf.train.write_graph() / tf.import_graph_def()">
+<meta name="description" content="TF的三种图@(Tensorflow) 三对关于图的API:  tf.train.Saver() / saver.restore() export_meta_graph / import_meta_graph tf.train.write_graph() / tf.import_graph_def()">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TF的三种图">
 <meta property="og:url" content="http://yoursite.com/2018/03/14/Tensorflow/TF的三种图/index.html">
-<meta property="og:site_name" content="Bing's Home">
-<meta property="og:description" content="TF的三种图@(Tensorflow)
-三对关于图的API:
-
-tf.train.Saver() / saver.restore()
-export_meta_graph / import_meta_graph
-tf.train.write_graph() / tf.import_graph_def()">
+<meta property="og:site_name" content="Bing&#39;s Home">
+<meta property="og:description" content="TF的三种图@(Tensorflow) 三对关于图的API:  tf.train.Saver() / saver.restore() export_meta_graph / import_meta_graph tf.train.write_graph() / tf.import_graph_def()">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-03-14T02:31:32.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TF的三种图">
-<meta name="twitter:description" content="TF的三种图@(Tensorflow)
-三对关于图的API:
-
-tf.train.Saver() / saver.restore()
-export_meta_graph / import_meta_graph
-tf.train.write_graph() / tf.import_graph_def()">
+<meta name="twitter:description" content="TF的三种图@(Tensorflow) 三对关于图的API:  tf.train.Saver() / saver.restore() export_meta_graph / import_meta_graph tf.train.write_graph() / tf.import_graph_def()">
 
 
 
@@ -444,7 +430,7 @@ tf.train.write_graph() / tf.import_graph_def()">
 <a id="more"></a>
 <h3 id="Graph-vs-Graph-def"><a href="#Graph-vs-Graph-def" class="headerlink" title="Graph vs. Graph_def"></a>Graph vs. Graph_def</h3><p>Graph是一些操作（Operation）和张量（Tensor）集合。</p>
 <p>图表示了比如Python代码所表达的计算的对应关系，真实的TF运行过程中，图不是一层不变的东西，因为真实的计算会被下放到多个CPU, GPU等异构设备上。所以TF会将Python代码描绘的图转成（序列化）为<code>Protocol Buffer</code>，再通过C/C++/CUDA运行<code>Protocol Buffer</code>定义的图。</p>
-<p>其中，关于<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-gpb/" target="_blank" rel="external"><code>Protocol Buffer</code></a>，是一种更轻便高效的结构化数据存储的格式，用于结构化数据串行化，即：序列化。</p>
+<p>其中，关于<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-gpb/" target="_blank" rel="noopener"><code>Protocol Buffer</code></a>，是一种更轻便高效的结构化数据存储的格式，用于结构化数据串行化，即：序列化。</p>
 <p>适合做数据存储和RPC数据交换，可用于通讯协议、数据存储等领域，语言无关，平台无关，可扩展。<br>支持：C++，Java, Python语言的API.</p>
 <p>PS. 专门针对命令解析的话，可考虑用此格式。</p>
 <p>相比于XML, JSON等格式，Protobuf有什么不同？</p>
@@ -600,7 +586,7 @@ tf.train.write_graph() / tf.import_graph_def()">
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -645,9 +631,7 @@ tf.train.write_graph() / tf.import_graph_def()">
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -668,7 +652,11 @@ tf.train.write_graph() / tf.import_graph_def()">
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
