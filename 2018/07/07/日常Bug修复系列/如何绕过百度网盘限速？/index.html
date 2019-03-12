@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.3" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'IUQCSEDJ79',
+      apiKey: '60f76ada8b68653e2a6d58c1ea890892',
+      indexName: 'dev_hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Hello World!" />
+
+
+<meta name="description" content="很久不用百度网盘，虽然百度网盘上各类文件加起来有1.5T大小之多。平时有需要下载小的文件，百度网盘限速倒还可堪堪忍受，这次下载一个Mac版本的Excel安装包，稍稍大一点，818.9MB，失败次数多达九次之多，最后一次直接爆出云端不存在，然后从头开始下载了。 注意：  这个文件是我自己之前备份在百度网盘的 下载网速正常在2MB/s 百度网盘在不买会员的情况下，死死限制在60KB/s以下 经常莫名显">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bing&#39;s Home">
+<meta property="og:url" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/index.html">
+<meta property="og:site_name" content="Bing&#39;s Home">
+<meta property="og:description" content="很久不用百度网盘，虽然百度网盘上各类文件加起来有1.5T大小之多。平时有需要下载小的文件，百度网盘限速倒还可堪堪忍受，这次下载一个Mac版本的Excel安装包，稍稍大一点，818.9MB，失败次数多达九次之多，最后一次直接爆出云端不存在，然后从头开始下载了。 注意：  这个文件是我自己之前备份在百度网盘的 下载网速正常在2MB/s 百度网盘在不买会员的情况下，死死限制在60KB/s以下 经常莫名显">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/assets/tampermonkey.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/assets/exlink.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/assets/monkey.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/assets/installed.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/assets/excel-0923061.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/assets/new.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/assets/begin.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/assets/speed.png">
+<meta property="og:updated_time" content="2018-07-07T00:30:24.607Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bing&#39;s Home">
+<meta name="twitter:description" content="很久不用百度网盘，虽然百度网盘上各类文件加起来有1.5T大小之多。平时有需要下载小的文件，百度网盘限速倒还可堪堪忍受，这次下载一个Mac版本的Excel安装包，稍稍大一点，818.9MB，失败次数多达九次之多，最后一次直接爆出云端不存在，然后从头开始下载了。 注意：  这个文件是我自己之前备份在百度网盘的 下载网速正常在2MB/s 百度网盘在不买会员的情况下，死死限制在60KB/s以下 经常莫名显">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/assets/tampermonkey.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title> | Bing's Home</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bing's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coder,区块链，机器学习。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cv">
+          <a href="/categories/CV" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />CV</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T07:57:14+08:00">2018-07-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>很久不用百度网盘，虽然百度网盘上各类文件加起来有1.5T大小之多。平时有需要下载小的文件，百度网盘限速倒还可堪堪忍受，这次下载一个Mac版本的<code>Excel</code>安装包，稍稍大一点，<code>818.9MB</code>，失败次数多达九次之多，最后一次直接<strong>爆出云端不存在</strong>，然后从头开始下载了。</p>
+<p>注意：</p>
+<ul>
+<li>这个文件是我自己之前备份在百度网盘的</li>
+<li>下载网速正常在<code>2MB/s</code></li>
+<li>百度网盘在不买会员的情况下，死死限制在<code>60KB/s</code>以下</li>
+<li>经常莫名显示下载失败，看似能够断点续传，但会在多个点告诉你云端不存在，从头开始下载</li>
+<li>核心在于：<strong>让你的使用体验为负值，逼迫你去买会员</strong>，但是<strong>普通档会员，不包含下载加速服务</strong>，豪华版才有这个服务</li>
+<li>更核心点在于，会员也不保证服务质量</li>
+</ul>
+<p>在追求自由而公平的互联网环境下，百度无疑是一个毒瘤。</p>
+<p><strong>但是其他网盘又不争气，才造就了百度网盘这种流氓一家独大的尴尬局面。</strong></p>
+<p>对于确实需要网盘转存文件的朋友来说，可以试着按照如下步骤折腾一下。</p>
+<h4 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料"></a>准备材料</h4><p>1.油猴 <a href="http://tampermonkey.net/" target="_blank" rel="noopener">http://tampermonkey.net/</a></p>
+<p>2.提取外链油猴脚本 <a href="https://greasyfork.org/en/scripts/26638-ex-%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98" target="_blank" rel="noopener">https://greasyfork.org/en/scripts/26638-ex-%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98</a></p>
+<p>3.分段下载工具 <code>proxyee down</code> <a href="https://github.com/proxyee-down-org/proxyee-down" target="_blank" rel="noopener">https://github.com/proxyee-down-org/proxyee-down</a></p>
+<h4 id="一、油猴"><a href="#一、油猴" class="headerlink" title="一、油猴"></a>一、油猴</h4><p><img src="assets/tampermonkey.png" alt="tampermonkey"></p>
+<p>我们以<code>Chrome</code>浏览器为例，输入<a href="http://tampermonkey.net/，进入如上界面，我这里显示已安装，没安装的话，下载安装即可。" target="_blank" rel="noopener">http://tampermonkey.net/，进入如上界面，我这里显示已安装，没安装的话，下载安装即可。</a></p>
+<p>油猴是一个脚本管理器，脚本是什么呢？脚本就是一些具体的工具，能够帮助我们去完成很多任务，比如绕过各类视频网站会员等等。我们可以去找到各类脚本，安装到油猴里。</p>
+<h4 id="二、提取百度网盘外链"><a href="#二、提取百度网盘外链" class="headerlink" title="二、提取百度网盘外链"></a>二、提取百度网盘外链</h4><p><img src="assets/exlink.png" alt="exlink"></p>
+<p>一般百度会把外链隐藏，我们看到的链接都是指向百度网盘的。通过安装这个脚本，就可以在百度网盘界面出现一个按钮，从而提取我们需要的外链。我已经安装了，没安装就会显示<code>Install</code>。</p>
+<p>油猴按钮会出现在浏览器右上角。</p>
+<p><img src="assets/monkey.png" alt="monkey"></p>
+<p>进入管理面板：</p>
+<p><img src="assets/installed.png" alt="installed"></p>
+<p>我这是安装了三个，其实第一个就好了。</p>
+<h4 id="三、分段下载工具：proxyee-down"><a href="#三、分段下载工具：proxyee-down" class="headerlink" title="三、分段下载工具：proxyee-down"></a>三、分段下载工具：proxyee-down</h4><p>链接：<a href="https://github.com/proxyee-down-org/proxyee-down" target="_blank" rel="noopener">https://github.com/proxyee-down-org/proxyee-down</a></p>
+<p>这个界面上详细说明了不同平台的下载安装，请对应查阅。</p>
+<p>1.<a href="https://github.com/monkeyWie/proxyee-down/blob/master/.guide/windows/read.md" target="_blank" rel="noopener">Windows安装教程</a></p>
+<p>2.<a href="https://github.com/monkeyWie/proxyee-down/blob/master/.guide/mac/read.md" target="_blank" rel="noopener">Mac安装教程</a></p>
+<p>3.<a href="https://github.com/monkeyWie/proxyee-down/blob/master/.guide/linux/read.md" target="_blank" rel="noopener">Linux安装教程</a></p>
+<h3 id="四、使用示例"><a href="#四、使用示例" class="headerlink" title="四、使用示例"></a>四、使用示例</h3><p>以这个链接为例：<a href="https://pan.baidu.com/s/19ghfdUzcRirOJvIc6qgLsA" target="_blank" rel="noopener">https://pan.baidu.com/s/19ghfdUzcRirOJvIc6qgLsA</a></p>
+<p><img src="assets/excel-0923061.png" alt="excel"></p>
+<p>因为安装了脚本，会多出一些按钮，比如<code>EX-下载</code>，我们复制链接，然后就可以放到迅雷里下载，但是亲测，迅雷的速度比百度网盘限制的还慢一倍。</p>
+<p>于是我们求助于刚刚下好的<code>proxyee-down</code>。</p>
+<p><img src="assets/new.png" alt="new"></p>
+<p>在任务菜单下，点击<code>+</code>创建任务，将提取到的链接复制到链接文本框，确定后弹出开始任务页面：</p>
+<p><img src="assets/begin.png" alt="begin"></p>
+<p>指定分段大小，和路径等。</p>
+<p>点击<code>创建</code>，下载就开始了。</p>
+<p><img src="assets/speed.png" alt="speed"></p>
+<p>平均网速，比<code>60KB/s</code>不知道快到哪里去了！</p>
+<p>希望能帮助到你。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/18/区块链/【2:100 项目分析】sky coin/" rel="next" title="SKY项目分析">
+                <i class="fa fa-chevron-left"></i> SKY项目分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Bing" />
+            
+              <p class="site-author-name" itemprop="name">Bing</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备材料"><span class="nav-number">1.</span> <span class="nav-text">准备材料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、油猴"><span class="nav-number">2.</span> <span class="nav-text">一、油猴</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、提取百度网盘外链"><span class="nav-number">3.</span> <span class="nav-text">二、提取百度网盘外链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、分段下载工具：proxyee-down"><span class="nav-number">4.</span> <span class="nav-text">三、分段下载工具：proxyee-down</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、使用示例"><span class="nav-number"></span> <span class="nav-text">四、使用示例</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bing</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.3</div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/';
+        this.page.identifier = '2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/';
+        this.page.title = '';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.0.3"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  
+</body>
+</html>

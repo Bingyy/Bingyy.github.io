@@ -320,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/写作指南/写作转盘了解一下？/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bing">
@@ -339,7 +339,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/11/写作指南/写作转盘了解一下？/" itemprop="url">写作转盘了解一下？</a></h1>
+                <a class="post-title-link" href="/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -351,7 +351,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T23:18:24+08:00">2018-06-11</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T07:57:14+08:00">2018-07-07</time>
             
 
             
@@ -369,9 +369,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/11/写作指南/写作转盘了解一下？/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/11/写作指南/写作转盘了解一下？/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/07/日常Bug修复系列/如何绕过百度网盘限速？/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -403,27 +403,846 @@
       
         
           
-            <blockquote>
-<p> 笔记自《第一章：没有什么是你写不了的》，书籍《How to Write Anything》，作者Laura Brown.</p>
-</blockquote>
-<p>常见的线性写作步骤是：</p>
+            <p>很久不用百度网盘，虽然百度网盘上各类文件加起来有1.5T大小之多。平时有需要下载小的文件，百度网盘限速倒还可堪堪忍受，这次下载一个Mac版本的<code>Excel</code>安装包，稍稍大一点，<code>818.9MB</code>，失败次数多达九次之多，最后一次直接<strong>爆出云端不存在</strong>，然后从头开始下载了。</p>
+<p>注意：</p>
 <ul>
-<li>目标</li>
-<li>读者</li>
-<li>头脑风暴</li>
-<li>组织</li>
-<li>写初稿</li>
-<li>修改</li>
+<li>这个文件是我自己之前备份在百度网盘的</li>
+<li>下载网速正常在<code>2MB/s</code></li>
+<li>百度网盘在不买会员的情况下，死死限制在<code>60KB/s</code>以下</li>
+<li>经常莫名显示下载失败，看似能够断点续传，但会在多个点告诉你云端不存在，从头开始下载</li>
+<li>核心在于：<strong>让你的使用体验为负值，逼迫你去买会员</strong>，但是<strong>普通档会员，不包含下载加速服务</strong>，豪华版才有这个服务</li>
+<li>更核心点在于，会员也不保证服务质量</li>
 </ul>
-<p>按理说，照着这个顺序去写，是能够得到一篇有逻辑有内容的好文章的，但是实际上呢，并不一定。因为方法虽好，却不适合所有人。</p>
-<p>因为这种线性思维方式，天然与大脑思考方式不同，大脑是发散式的。而强制使用这个顺序，就有可能成为写作上的阻碍。</p>
+<p>在追求自由而公平的互联网环境下，百度无疑是一个毒瘤。</p>
+<p><strong>但是其他网盘又不争气，才造就了百度网盘这种流氓一家独大的尴尬局面。</strong></p>
+<p>对于确实需要网盘转存文件的朋友来说，可以试着按照如下步骤折腾一下。</p>
+<h4 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料"></a>准备材料</h4><p>1.油猴 <a href="http://tampermonkey.net/" target="_blank" rel="noopener">http://tampermonkey.net/</a></p>
+<p>2.提取外链油猴脚本 <a href="https://greasyfork.org/en/scripts/26638-ex-%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98" target="_blank" rel="noopener">https://greasyfork.org/en/scripts/26638-ex-%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98</a></p>
+<p>3.分段下载工具 <code>proxyee down</code> <a href="https://github.com/proxyee-down-org/proxyee-down" target="_blank" rel="noopener">https://github.com/proxyee-down-org/proxyee-down</a></p>
+<h4 id="一、油猴"><a href="#一、油猴" class="headerlink" title="一、油猴"></a>一、油猴</h4><p><img src="assets/tampermonkey.png" alt="tampermonkey"></p>
+<p>我们以<code>Chrome</code>浏览器为例，输入<a href="http://tampermonkey.net/，进入如上界面，我这里显示已安装，没安装的话，下载安装即可。" target="_blank" rel="noopener">http://tampermonkey.net/，进入如上界面，我这里显示已安装，没安装的话，下载安装即可。</a></p>
+<p>油猴是一个脚本管理器，脚本是什么呢？脚本就是一些具体的工具，能够帮助我们去完成很多任务，比如绕过各类视频网站会员等等。我们可以去找到各类脚本，安装到油猴里。</p>
+<h4 id="二、提取百度网盘外链"><a href="#二、提取百度网盘外链" class="headerlink" title="二、提取百度网盘外链"></a>二、提取百度网盘外链</h4><p><img src="assets/exlink.png" alt="exlink"></p>
+<p>一般百度会把外链隐藏，我们看到的链接都是指向百度网盘的。通过安装这个脚本，就可以在百度网盘界面出现一个按钮，从而提取我们需要的外链。我已经安装了，没安装就会显示<code>Install</code>。</p>
+<p>油猴按钮会出现在浏览器右上角。</p>
+<p><img src="assets/monkey.png" alt="monkey"></p>
+<p>进入管理面板：</p>
+<p><img src="assets/installed.png" alt="installed"></p>
+<p>我这是安装了三个，其实第一个就好了。</p>
+<h4 id="三、分段下载工具：proxyee-down"><a href="#三、分段下载工具：proxyee-down" class="headerlink" title="三、分段下载工具：proxyee-down"></a>三、分段下载工具：proxyee-down</h4><p>链接：<a href="https://github.com/proxyee-down-org/proxyee-down" target="_blank" rel="noopener">https://github.com/proxyee-down-org/proxyee-down</a></p>
+<p>这个界面上详细说明了不同平台的下载安装，请对应查阅。</p>
+<p>1.<a href="https://github.com/monkeyWie/proxyee-down/blob/master/.guide/windows/read.md" target="_blank" rel="noopener">Windows安装教程</a></p>
+<p>2.<a href="https://github.com/monkeyWie/proxyee-down/blob/master/.guide/mac/read.md" target="_blank" rel="noopener">Mac安装教程</a></p>
+<p>3.<a href="https://github.com/monkeyWie/proxyee-down/blob/master/.guide/linux/read.md" target="_blank" rel="noopener">Linux安装教程</a></p>
+<h3 id="四、使用示例"><a href="#四、使用示例" class="headerlink" title="四、使用示例"></a>四、使用示例</h3><p>以这个链接为例：<a href="https://pan.baidu.com/s/19ghfdUzcRirOJvIc6qgLsA" target="_blank" rel="noopener">https://pan.baidu.com/s/19ghfdUzcRirOJvIc6qgLsA</a></p>
+<p><img src="assets/excel-0923061.png" alt="excel"></p>
+<p>因为安装了脚本，会多出一些按钮，比如<code>EX-下载</code>，我们复制链接，然后就可以放到迅雷里下载，但是亲测，迅雷的速度比百度网盘限制的还慢一倍。</p>
+<p>于是我们求助于刚刚下好的<code>proxyee-down</code>。</p>
+<p><img src="assets/new.png" alt="new"></p>
+<p>在任务菜单下，点击<code>+</code>创建任务，将提取到的链接复制到链接文本框，确定后弹出开始任务页面：</p>
+<p><img src="assets/begin.png" alt="begin"></p>
+<p>指定分段大小，和路径等。</p>
+<p>点击<code>创建</code>，下载就开始了。</p>
+<p><img src="assets/speed.png" alt="speed"></p>
+<p>平均网速，比<code>60KB/s</code>不知道快到哪里去了！</p>
+<p>希望能帮助到你。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/18/区块链/【2:100 项目分析】sky coin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/18/区块链/【2:100 项目分析】sky coin/" itemprop="url">SKY项目分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T15:49:42+08:00">2018-06-18</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/18/区块链/【2:100 项目分析】sky coin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/18/区块链/【2:100 项目分析】sky coin/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0-项目代币基本情况"><a href="#0-项目代币基本情况" class="headerlink" title="0.项目代币基本情况"></a>0.项目代币基本情况</h3><p>代币名称：SKY</p>
+<p>中文名称：天空币</p>
+<p>总量：1亿</p>
+<p>流通量：9000万</p>
+<p>发文时价格：57.53</p>
+<p>市值排名：104</p>
+<p>市值占比：&lt; 0.1%</p>
+<h3 id="1-项目概览"><a href="#1-项目概览" class="headerlink" title="1.项目概览"></a>1.项目概览</h3><p>Skycoin项目做的是整个生态系统，代币只是其中的一个必要组成成分。在这个生态系统中，5大组成成分如下：</p>
+<ul>
+<li>Skycoin: 代币</li>
+<li>Skywire: 匿名、去中心化的网络</li>
+<li>Skyminer: 硬件，也是Skywire网络的接入点</li>
+<li>Fiber: 去中心化的区块链网络</li>
+<li>Skysuite: 给开发者准备的应用开发套件</li>
+</ul>
+<h3 id="2-简介"><a href="#2-简介" class="headerlink" title="2. 简介"></a>2. 简介</h3><p><strong>去中心化</strong>的Web 3.0时代</p>
+<p>Skycoin项目是想实现一个高速、可扩展、完全去中心化的区块链平台。</p>
+<p><strong>Skywire</strong></p>
+<p>Skywire的网络需要硬件的支撑，对于想参与项目的大众，可以在官网购买机器或者自己按照官网的文档自己组装机器。这些机器为网络的运行提供带宽支撑。相应的，可以获得Skycoin作为奖励。</p>
+<p><strong>Fiber</strong></p>
+<p>上层应用将运行在Fiber网络上，Skywire相对偏向底层一些。Fiber将直接托管日常应用程序。</p>
+<p><strong>Skycoin</strong></p>
+<p>代币是公链的血液。那么血液流通的快与慢直接决定了公链的品质高低。Skycoin号称能够达到秒级处理交易事务的能力。能够与任何电子支付方式相匹敌。<strong>为了生态系统的稳定性</strong>，Skycoin持有者会收到第二种货币：Coin Hour，币时。使用币时能够用于支付交易费用，换取生态系统的其他服务和功能，同时也能用于换取Skycoin。</p>
+<p><strong>币时</strong></p>
+<p>Skycoin交易是不用收取手续费，而是用币时来代替。每个地址持有1个Skycoin一个小时将可获得1个币时。</p>
+<h3 id="3-项目起源"><a href="#3-项目起源" class="headerlink" title="3.项目起源"></a>3.项目起源</h3><p>开始是为了寻求解决PoW算法会导致中心化问题的方法。此外，传统的互联网供应商（ISP）掌控者互联网的<strong>物理架构</strong>，并通过不同定价或者分层定价，限制向用户提供服务的质量（这个我们几乎人人切身体会得到，不同的收费有不同的服务）。更严重的是，我们通过ISP上网，会产生隐私信息，ISP就能够把我们的隐私卖给第三方获取利益。这样的网络现状，到今天都没有改变。而我们似乎都已经习惯到麻木了。</p>
+<p>总结出来就是两个问题：</p>
+<ul>
+<li>网络中心化（PoW算法导致算力集中在矿场）</li>
+<li>网络中立性（如何摆脱对ISP的依赖）</li>
+</ul>
+<p>那针对这两个问题，实质上是一个问题：中心化的系统的天然弊病。如何做出一个真正的去中心化的互联网？如何摆脱对ISP的依赖？</p>
+<p>Skycoin宣称自己做到了。但是具体会演变到何种地步，仍然有待进一步观察。但是这个理念，以及团队提出的愿景非常值得我们期待。</p>
+<h3 id="4-优势"><a href="#4-优势" class="headerlink" title="4.优势"></a>4.优势</h3><p>Skycoin提出的<strong>共识算法</strong>既不是PoS也不是PoW，而是独树一帜的<strong>Obelisk</strong>算法。这样就可以避免受到PoW和PoS算法的弱点的影响。</p>
+<p><strong>PoW和PoS有啥弱点？</strong></p>
+<p>提到PoW必然要从祖宗比特币开始说起，中本聪提出的<strong>通过挖矿来搭建经济激励模型</strong>从现在看来是有一点点小问题的，但是不能否认，PoW仍然是当前最公平的共识算法。这个问题也不能回避：矿池的影响力集中，导致他们有能力对网络进行分叉。比如2017年12月就有一堆比特币的分叉币出现，尤其以吴忌寒的BCH最为成功，背后的算力支撑功不可没。</p>
+<p>那PoS有什么问题呢？<strong>虽然PoS解决了51%攻击的安全问题，但是使用PoS算法的网络比PoW更易受到中心化的影响。</strong></p>
+<p>用一句话说清楚就是：</p>
 <blockquote>
-<p>成功的写作者都知道，你可以从这个步骤中的任意一步作为起点，写出一篇成功的文章。<strong>成功的写作关键是，不要以任何特定的顺序做完这六件事，只要保证在写作流程中，每件事都做了一遍即可。</strong></p>
+<p>PoS网络系统内，主要利益相关者能够在不考虑社区、企业、矿机和开发人员意愿的情况下，做出任何最有利于他们的改变。</p>
 </blockquote>
-<p>直到读完本章，我都不知道写作还有这样的步骤总结，每次写都是根据一个主题，大致定好子主题，然后就很开心地去写了。希望通过这种规范化的写作，能让自己的文字有更好的阅读体验吧，至少自己愿意多读几遍~</p>
-<p><img src="assets/wheel.png" alt="wheel"></p>
-<p>对于个人写作者而言，使用这个转盘，从环上的任意一步开始，找到适合自己的节奏即可。</p>
-<p>END.</p>
+<p>这样，权力很容易变得集中。而真正普罗大众的利益却不能得到保障。</p>
+<p><strong>Obelisk算法凭什么规避这些问题？</strong></p>
+<p>可以从这个算法的前缀中得知一二：分布式共识算法Obelisk.</p>
+<blockquote>
+<p>Obelisk分散了各个要素对网络的影响。网络的组成是节点，包含计算机，Skyminer机器等，而不是各类GPU,ASIC矿机。每个节点可以选择订阅其他被信任的节点。被其他节点订阅更多的节点有更大的影响力。</p>
+<p>每一个节点的举动都会被公开记录。所有的共识决策和通信都是通过每个节点的个人区块链进行。社区可以对节点进行审计，防止作弊和勾结，同时不干涉隐私。节点的IP地址只向其直接相连的节点公开。</p>
+</blockquote>
+<p>通过这种机制，网络拥有高度的民主，也因为决策元素的分散，权力不会集中，中心化问题得以避免。</p>
+<p><strong>具体优势</strong></p>
+<ul>
+<li>零手续费：使用币时（单独的货币）来支付即可</li>
+<li>安全：不受51%攻击的威胁</li>
+<li>隐私：交易结构的设计，使得交易无法区分，保护隐私</li>
+<li>可持续性：Skycoin可在30W的手机处理器上运行，非高能耗</li>
+<li>激励：用户通过提供资源赚取Skycoin，使用Skycoin可以购买其他网络资源</li>
+<li>实物支撑：带宽，运行协议的机器实际上是在出租带宽获取Skycoin奖励</li>
+</ul>
+<h3 id="5-创始人团队成员"><a href="#5-创始人团队成员" class="headerlink" title="5.创始人团队成员"></a>5.创始人团队成员</h3><p>Synth，早期比特币开发者，8年前开始设想新一代去中心化网络的前景。是多个加密数字货币项目的顾问。且其拥有数学，分布式系统以及逻辑学的背景。</p>
+<p>Houwu Chen ，以太坊平台开发者，也是Obelisk白皮书的作者。曾在清华攻读博士学位。</p>
+<p>Steve Leonard，编写了大多数的Skycoin的软件。拥有开发电子商务网站的背景。同时个人经历包含软件开发，数学以及化学等。</p>
+<h3 id="6-小总结"><a href="#6-小总结" class="headerlink" title="6.小总结"></a>6.小总结</h3><p>还有很多东西没提到，比如Skycoin项目为了方便开发者在上面构建DApp，开发了一门新的语言CX，以及具体的Skyminer矿机的搭建暂且都不做进一步展开。个人角度看来，这也是个底层公链项目，也是一个团队实力很棒的项目。但是对于更在意币价的朋友而言，也还要从市场营销团队的能力来看一个项目。但这不在本文探讨之列。本文的核心目的就一个：读完本文至少对Skycoin这个项目形成一定的了解。</p>
+<p><strong>声明：本文章只用于讨论目的，不作为任何投资建议。</strong></p>
+<p>发文时主流货币价格：</p>
+<p>BTC: 42147</p>
+<p>ETH: 3227</p>
+<p>EOS: 67.18</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/14/区块链/IOST项目分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/14/区块链/IOST项目分析/" itemprop="url">IOST项目分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-14T11:24:24+08:00">2018-06-14</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/14/区块链/IOST项目分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/14/区块链/IOST项目分析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、代币基本信息"><a href="#一、代币基本信息" class="headerlink" title="一、代币基本信息"></a>一、代币基本信息</h3><p>代币称号：IOST</p>
+<p><strong>是否挖矿：否</strong></p>
+<p>总发行量：10.12亿 BAY</p>
+<p>流通量：10.12亿 BAY（全部在流通）</p>
+<p>流通市值：约合4,261BTC</p>
+<p>众筹起始时间：2014.09.11 – 2014.10.11</p>
+<p>enforceable众筹价格：￥0.0066</p>
+<p>当前价格：0.1832（27.75倍）</p>
+<p>市值排名：100</p>
+<h3 id="二、项目基本信息"><a href="#二、项目基本信息" class="headerlink" title="二、项目基本信息"></a>二、项目基本信息</h3><h3 id="三、核心特征"><a href="#三、核心特征" class="headerlink" title="三、核心特征"></a>三、核心特征</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/14/英语践行/Date 20180614/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/14/英语践行/Date 20180614/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-14T06:29:36+08:00">2018-06-14</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/14/英语践行/Date 20180614/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/14/英语践行/Date 20180614/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Date: 20180614</p>
+<p>Name: Bing</p>
+<p><strong>16. Boost positive mood/sb’s confidence/morale 增强积极情绪/某人的信息/士气</strong></p>
+<p>例句：<em>One study found that spending 20 minutes outside in good weather not only boosted positive mood, but broadened thinking and improved working memory…</em></p>
+<p>造句：Prior to Gaokao, most headmasters will give a speech to <strong>boost students’ confidence</strong>. </p>
+<p><strong>17. keep an eye on 照看，六神，密切注意</strong></p>
+<p>例句：<em>It also found that happiness is maximized at 13.9°C, so keep an eye on the weather forecast before heading outside for your 20 minutes of fresh air.</em></p>
+<p>造句：<strong>Keep an eye on</strong> that little baby, he is pretty naughty.</p>
+<p><strong>18. far more ≈ much more 很多，非常多</strong></p>
+<p>例句：<em>they found that money spent on activities—such as concerts and group dinners out—brought far more pleasure than material purchases like shoes, televisions, or expensive watches.</em></p>
+<p>造句：Doing meditation regularly will bring you <strong>far more</strong> inner joy that you cannot imagine.</p>
+<p><strong>19. most importantly 一般作为连接词，最重要的是…</strong></p>
+<p>例句：<em>Participants assigned to recall a purchase made for someone else reported feeling significantly happier immediately after this recollection; <strong>most importantly,</strong> the happier participants felt, the more likely they were to choose to spend a windfall on someone else in the near future.</em></p>
+<p> 造句：There are so many tips about investment, such as you should take notes about every decision you’ve made, review notes every day and so on; <strong>most importantly</strong>, please be patient. Do prepare before you make any decision concerning investing.</p>
+<p><strong>20. a large/substantial/significant portion of  一大部分，重要部分</strong></p>
+<p>例句：<em>Due to the shock of the reunion, a large portion of the infrastructure of volunteering (e.g. sports clubs associated with firms) collapsed and people randomly lost their opportunities for volunteering.</em></p>
+<p>造句：Sometimes I feel depressed due to the overwhelming to-do list. Then I will rank the items and after that <strong>a significant portion of</strong> them would be cut down easily. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/英语践行/Date 20180613/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/13/英语践行/Date 20180613/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T21:29:36+08:00">2018-06-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/13/英语践行/Date 20180613/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/13/英语践行/Date 20180613/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Date: 20180613</p>
+<p>Name: Bing</p>
+<p><strong>11. Staying in touch with 保持联络</strong></p>
+<p>例句：<em>Staying in touch with friends and family is one of the top five regrets of the dying.</em></p>
+<p><strong>造句</strong>：I wish I had <strong>stayed in touch with</strong> you, but the unresolved mistake happened between us has clouded our judgements until today. </p>
+<p><strong>12. it’s beneficial for 对…有利</strong></p>
+<p>例句：<em>If you want more evidence that it’s beneficial for you, I’ve found some research that proves it can make you happier right now.</em></p>
+<p><strong>造句</strong>：People always tell me: “Don’t stay up late. <strong>It’s beneficial for</strong> your mental and physical health to get up early and sleep early. “ I sort of agree with this opinion, but I just can’t resist the urge to keep sober even deep into night.</p>
+<p><strong>13. in terms of 在….方面，就….而言</strong></p>
+<p>例句：<em>Using the British Household Panel Survey, I find that an increase in the level of social involvements is worth up to an extra £85,000 a year in terms of life satisfaction.</em></p>
+<p><strong>造句</strong>：<strong>In terms of</strong> writing, don’t wait till all things set up for you, and it is better to set forth and then grind your skills.</p>
+<p><strong>14. hundreds of thousands of  成百上千</strong></p>
+<p>例句：<em>So we could increase our annual income by hundreds of thousands of dollars and still not be as happy as if we increased the strength of our social relationships.</em></p>
+<p><strong>造句</strong>：What a day! <strong>Hundreds of thousands of</strong> people crowded around West Lake during the May Day holiday.</p>
+<p><strong>15. count on  依赖，依靠，指望</strong></p>
+<p>例句：<em>We figured that if a Terman participant sincerely felt that he or she had friends and relatives to count on when having a hard time then that person would be healthier.</em></p>
+<p><strong>造句</strong>：Holy crap. I thought I could <strong>count on</strong> you this time. Look what you have done! YOU MESSED IT UP BUDDY!!!</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/英语践行/Date 20180612/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bing's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/英语践行/Date 20180612/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T17:50:43+08:00">2018-06-12</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/12/英语践行/Date 20180612/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/12/英语践行/Date 20180612/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Date: 20180612</p>
+<p>Name: BING</p>
+<p><strong>6. clock in  打卡上班</strong></p>
+<p><em>例句：Researchers found that employees’ moods when they clocked in tended to affect how they felt the rest of the day.</em></p>
+<p> 造句：I could <strong>clock in</strong> by 10 am and clock out by 5 pm today.</p>
+<p><strong>7. The fact that  事实上</strong></p>
+<p><em>例句：The fact that we tend to do this twice a day, five days a week, makes it unsurprising that its effect would build up over time and make us less and less happy.</em></p>
+<p>造句： <strong>The fact that</strong> people incline to have sweet foods as much as possible originates in human’s evolution from which the more sugar we can get the more chances to survive.</p>
+<p><strong>8. acclimate to 使适应环境</strong></p>
+<p><em>例句：While many voluntary conditions don’t affect our happiness in the long term because we acclimate to them, people never get accustomed to their daily slog to work because sometimes the traffic is awful and sometimes it’s not.</em></p>
+<p>造句： It is not that hard to <strong>acclimate to</strong> a new place for human beings at all. I found this out when I moved around several cities in the past years. Always, it only takes several days to settle down and then it is time to enjoy the moment.</p>
+<p><strong>9. compensate for sth by doing sth 通过做某事来弥补</strong></p>
+<p><em>例句：We tend to try to compensate for this by having a bigger house or a better job.</em></p>
+<p>造句：Please do let the idea go which you can <strong>compensate for something by doing something else</strong>. Be prepared to do it well at first while you get the chance.</p>
+<p><strong>10. make up for  补偿，弥补</strong></p>
+<p><em>例句：Two Swiss economists who studied the effect of commuting on happiness found that such factors could not make up for the misery created by a long commute.</em></p>
+<p>造句：Since I cannot undo the past I am considering a new plan to <strong>make up for</strong> you and if you accept the items please sign the contract.</p>
 
           
         
@@ -1081,773 +1900,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/区块链/【译文 Part 1】NEO vs. ETH/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bing's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/29/区块链/【译文 Part 1】NEO vs. ETH/" itemprop="url">【译文 Part 1】NEO vs. ETH--为什么NEO可能是2018最强数字货币？</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-29T12:06:59+08:00">2018-05-29</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/区块链/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/29/区块链/【译文 Part 1】NEO vs. ETH/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/29/区块链/【译文 Part 1】NEO vs. ETH/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="https://hackernoon.com/neo-versus-ethereum-why-neo-might-be-2018s-strongest-cryptocurrency-79956138bea3" target="_blank" rel="noopener">原始连接</a></p>
-<h1 id="NEO-versus-Ethereum-Why-NEO-might-be-2018’s-strongest-cryptocurrency"><a href="#NEO-versus-Ethereum-Why-NEO-might-be-2018’s-strongest-cryptocurrency" class="headerlink" title="NEO versus Ethereum: Why NEO might be 2018’s strongest cryptocurrency"></a>NEO versus Ethereum: Why NEO might be 2018’s strongest cryptocurrency</h1><h3 id="1-为什么要读这篇文章"><a href="#1-为什么要读这篇文章" class="headerlink" title="1.为什么要读这篇文章"></a>1.为什么要读这篇文章</h3><p>小蚁：NEO</p>
-<p>以太坊：ETH</p>
-<p>接下来都用字母表示。</p>
-<p>问自己一个问题，NEO或者ETH，你会选择谁呢？我们为什么在意平台之间的对比呢？原因在于我们都是投资人。从开发者的角度来说，功能性是最重要的。当前在区块链世界里，还没有形成所谓的品牌忠诚。意味着，如果一个平台没有比它的竞争者做得更好，那么开发者就很容易倒戈。所以，NEO和ETH到底谁更好呢？</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/29/区块链/【译文 Part 1】NEO vs. ETH/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/区块链/【Part2】跨链:侧链进一步解读/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bing's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/23/区块链/【Part2】跨链:侧链进一步解读/" itemprop="url">侧链、跨链的优势与问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T12:05:59+08:00">2018-05-23</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/区块链/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/23/区块链/【Part2】跨链:侧链进一步解读/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/23/区块链/【Part2】跨链:侧链进一步解读/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="【Part2】侧链、跨链的优势与问题"><a href="#【Part2】侧链、跨链的优势与问题" class="headerlink" title="【Part2】侧链、跨链的优势与问题"></a>【Part2】侧链、跨链的优势与问题</h3><p>@(区块链)</p>
-<blockquote>
-<p>本文仍是阅读《侧链/跨链行业研究报告》的阅读笔记的第二部分。</p>
-</blockquote>
-<p>上一篇我们解读了跨链、侧链这两个概念，本篇将完成下面的子主题：</p>
-<ul>
-<li>侧链、跨链的优势与问题</li>
-</ul>
-<p>早期的跨链项目主要关注的是<strong>资产的转移</strong>。而演变到今天，跨链项目开始更多关注<strong>链的状态的转移</strong>。</p>
-<blockquote>
-<p>侧链服务于主链，跨链志在链之间的价值和功能的连通。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/23/区块链/【Part2】跨链:侧链进一步解读/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/18/高效成长/超越感觉/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bing's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/18/高效成长/超越感觉/" itemprop="url">Beyond feelings A guide to critical thinking</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-18T16:23:03+08:00">2018-05-18</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/高效成长/" itemprop="url" rel="index"><span itemprop="name">高效成长</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/18/高效成长/超越感觉/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/18/高效成长/超越感觉/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>这也是一本值得仔细研读的书籍，大纲列举如下。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/18/高效成长/超越感觉/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/13/区块链/【概念篇】当我们说侧链跨链时我们是在说什么？/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bing's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/13/区块链/【概念篇】当我们说侧链跨链时我们是在说什么？/" itemprop="url">【概念篇】当我们说侧链跨链时我们是在说什么？</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-13T01:28:36+08:00">2018-05-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/13/区块链/【概念篇】当我们说侧链跨链时我们是在说什么？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/13/区块链/【概念篇】当我们说侧链跨链时我们是在说什么？/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>本篇文章来自《侧链/跨链行业研究报告》阅读笔记，全文共18页，摘录出个人认为的精华部分供大家参考。</p>
-</blockquote>
-<h3 id="一、引子"><a href="#一、引子" class="headerlink" title="一、引子"></a>一、引子</h3><p>区块链发展到今天，已经取得了巨大的进步，但是我们仍然面临一个<strong>关键瓶颈</strong>：如何提高<strong>交易的吞吐量</strong>和<strong>交易的速度</strong>。</p>
-<p>针对这两个核心痛点，各个技术团队提出了多种解决方案，今天我们围绕其中的两个：<strong>侧链、跨链</strong>展开，分析一下它们到底能带来什么以及存在的一些问题。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/13/区块链/【概念篇】当我们说侧链跨链时我们是在说什么？/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/区块链/一则公告/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bing's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/13/区块链/一则公告/" itemprop="url">一则公告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T01:20:30+08:00">2018-04-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/13/区块链/一则公告/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/04/13/区块链/一则公告/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>关于区块链学习，欢迎大家关注本人最新的公号，币圈研习社：</p>
-<p><img src="/images/qrcode.jpg" alt="币圈研习社"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1899,7 +1951,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2012,7 +2064,7 @@
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
